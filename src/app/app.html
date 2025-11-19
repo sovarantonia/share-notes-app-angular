@@ -169,7 +169,6 @@
     margin-inline-start: 0.25rem;
   }
 
-
   @media screen and (max-width: 650px) {
     .content {
       flex-direction: column;
@@ -228,12 +227,7 @@
       </svg>
       <h1>Hello, {{ title() }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
-      <app-card>
-        <div card-header>Login</div>
-        <div card-body>
-          <app-login-form> </app-login-form>
-        </div>
-      </app-card>
+      <app-login-component> </app-login-component>
     </div>
     <!-- <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side"></div> -->

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserLogin } from '../model/login/user-login';
 @Component({
   selector: 'app-login-form',
   imports: [ReactiveFormsModule],
@@ -12,6 +13,8 @@ export class LoginForm {
     password: new FormControl('', [Validators.required]),
   });
 
+  @Output() public handleFormData = new EventEmitter<UserLogin>();
+
   get email() {
     return this.loginForm.get('email');
   }
@@ -20,7 +23,12 @@ export class LoginForm {
     return this.loginForm.get('password');
   }
 
-  onSubmit() {
-    alert('Data ' + this.loginForm.value.email);
+  onSubmit(event: Event) {
+    event.preventDefault();
+    
+    let loginInfo: UserLogin = this.loginForm.value as UserLogin;
+    
+    this.handleFormData.emit(loginInfo);
+    this.loginForm.reset();
   }
 }

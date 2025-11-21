@@ -3,6 +3,7 @@ import { Card } from '../card/card';
 import { LoginForm } from '../login-form/login-form';
 import { UserLogin } from '../model/login/user-login';
 import { AuthService } from '../service/auth/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
@@ -12,7 +13,7 @@ import { AuthService } from '../service/auth/auth-service';
   standalone: true,
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
 
   }
   ngOnInit(): void {}
@@ -20,8 +21,7 @@ export class LoginComponent implements OnInit {
   async onHandleFormData(user: UserLogin) {
     try {
       const res = await this.authService.login(user);
-      console.log(res.userResponse);
-      alert('Logged in'); // placeholder
+      this.router.navigate(['home']);
     }catch(err) {
       alert('Error'); //
     }

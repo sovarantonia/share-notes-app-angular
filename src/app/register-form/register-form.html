@@ -1,0 +1,50 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit($event)">
+  <label for="firstName">First name:</label>
+  <input id="firstName" formControlName="firstName" />
+
+  @if (firstName?.invalid && (firstName?.touched || firstName?.dirty)) {
+    <div>First name is required</div>
+  }
+
+  <label for="lastName">Last name:</label>
+  <input id="lastName" formControlName="lastName" />
+
+  @if (lastName?.invalid && (lastName?.touched || lastName?.dirty)) {
+    <div>Last name is required</div>
+  }
+
+  <label for="email">Email:</label>
+  <input id="email" formControlName="email" />
+
+  @if (email?.invalid && (email?.touched || email?.dirty)) {
+    @if (email?.hasError('required')) {
+      <div>Email is required</div>
+    } @else if (email?.hasError('email')) {
+      <div>Invalid email format</div>
+    }
+  }
+
+  <label for="password">Password:</label>
+  <input id="password" formControlName="password" type="password" />
+
+  @if (password?.invalid && (password?.touched || password?.dirty)) {
+    @if (password?.hasError('required')) {
+      <div>Password is required</div>
+    } @else if (password?.hasError('minLength')) {
+      <div>Password should have minimum 5 characters</div>
+    }
+  }
+
+  <label for="confirmPassword">Password:</label>
+  <input id="confirmPassword" formControlName="confirmPassword" type="password" />
+
+  @if (confirmPassword?.invalid && (confirmPassword?.touched || confirmPassword?.dirty)) {
+    @if (password?.hasError('required')) {
+      <div>Password is required</div>
+    } @else if (password?.value !== confirmPassword?.value) {
+      <div>Passwords do not match</div>
+    }
+  }
+
+  <button type="submit" [disabled]="registerForm.invalid">Register</button>
+</form>

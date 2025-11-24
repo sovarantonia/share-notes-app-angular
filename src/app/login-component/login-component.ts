@@ -3,11 +3,11 @@ import { Card } from '../card/card';
 import { LoginForm } from '../login-form/login-form';
 import { UserLogin } from '../model/login/user-login';
 import { AuthService } from '../service/auth/auth-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
-  imports: [Card, LoginForm],
+  imports: [Card, LoginForm, RouterLink],
   templateUrl: './login-component.html',
   styleUrl: './login-component.css',
   standalone: true,

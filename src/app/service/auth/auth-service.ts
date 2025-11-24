@@ -1,9 +1,11 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { UserLogin } from '../../model/login/user-login';
+import { UserRegister } from '../../model/register/user-register';
+import { User } from '../../model/user/user';
 import { UserLoginResponse } from '../../model/user/user-login-response';
-import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -20,6 +22,10 @@ export class AuthService {
     sessionStorage.setItem(this.TOKEN_KEY, res.tokenValue);
 
     return res;
+  }
+
+  async register(user: UserRegister): Promise<User> {
+    return await firstValueFrom(this.http.post<User>(`${this.baseUrl}/register`, user));
   }
 
   getToken(): string | null {

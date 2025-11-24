@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { UserLogin } from '../../model/login/user-login';
 import { UserLoginResponse } from '../../model/user/user-login-response';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly baseUrl = 'http://localhost:8080';
   private readonly TOKEN_KEY = 'tokenValue';
   private readonly http: HttpClient = inject(HttpClient);
+  private platformId = inject(PLATFORM_ID);
 
   async login(user: UserLogin): Promise<UserLoginResponse> {
     const res = await firstValueFrom(
@@ -21,7 +23,10 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return sessionStorage.getItem(this.TOKEN_KEY);
+    if (isPlatformBrowser(this.platformId)) {
+      return sessionStorage.getItem(this.TOKEN_KEY);
+    }
+    return null;
   }
 
   logout(): void {

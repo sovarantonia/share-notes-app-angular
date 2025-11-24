@@ -5,7 +5,7 @@ import { LoginComponent } from './login-component/login-component';
 import { AuthGuard } from './service/auth/auth-guard';
 
 export const routes: Routes = [
-  { path: '', component: LandingPage },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomePage, canActivate: [AuthGuard] },
+  { path: '', component: LandingPage, title: 'Share notes app' },
+  { path: 'login', component: LoginComponent, title: 'Login' },
+  { path: 'home', component: HomePage, canActivate: [AuthGuard], title: 'Home' },
 ];

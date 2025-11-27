@@ -16,11 +16,18 @@
   <label for="email">Email:</label>
   <input id="email" formControlName="email" />
 
-  @if (email?.invalid && (email?.touched || email?.dirty)) {
-    @if (email?.hasError('required')) {
-      <div>Email is required</div>
-    } @else if (email?.hasError('email')) {
-      <div>Invalid email format</div>
+  @if (email?.touched || email?.dirty) {
+    @if (email?.invalid) {
+      @if (email?.hasError('required')) {
+        <div>Email is required</div>
+      } @else if (email?.hasError('email')) {
+        <div>Invalid email format</div>
+      }
+      @else if (email?.hasError('emailExists')) {
+        <div>
+          This email is already taken
+        </div>
+      }
     }
   }
 
@@ -30,18 +37,18 @@
   @if (password?.invalid && (password?.touched || password?.dirty)) {
     @if (password?.hasError('required')) {
       <div>Password is required</div>
-    } @else if (password?.hasError('minLength')) {
+    } @else if (password?.hasError('minlength')) {
       <div>Password should have minimum 5 characters</div>
     }
   }
 
-  <label for="confirmPassword">Password:</label>
+  <label for="confirmPassword">Confirm password:</label>
   <input id="confirmPassword" formControlName="confirmPassword" type="password" />
 
-  @if (confirmPassword?.invalid && (confirmPassword?.touched || confirmPassword?.dirty)) {
-    @if (password?.hasError('required')) {
+  @if (confirmPassword?.touched || confirmPassword?.dirty) {
+    @if (confirmPassword?.hasError('required') && confirmPassword?.invalid) {
       <div>Password is required</div>
-    } @else if (password?.value !== confirmPassword?.value) {
+    } @else if (registerForm.hasError('passwordsNotMatching')) {
       <div>Passwords do not match</div>
     }
   }

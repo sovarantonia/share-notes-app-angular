@@ -1,6 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { UserRegister } from '../model/register/user-register';
+import { EmailExistsValidator } from '../validator/email-exists-validator';
+import { confirmPasswordValidator } from '../validator/password-validator';
 
 @Component({
   selector: 'app-register-form',
@@ -10,13 +18,27 @@ import { UserRegister } from '../model/register/user-register';
   standalone: true,
 })
 export class RegisterForm implements OnInit {
-  public registerForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(5)]),
-  });
+  public registerForm;
+
+  constructor(
+    private emailExistsValidator: EmailExistsValidator,
+    private fb: FormBuilder
+  ) {
+    this.registerForm = this.fb.group(
+      {
+        firstName: new FormControl('', [Validators.required]),
+        lastName: new FormControl('', [Validators.required]),
+        email: new FormControl(
+          '',
+          [Validators.required, Validators.email],
+          [this.emailExistsValidator.checkEmailExists()]
+        ),
+        password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+        confirmPassword: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      },
+      { validators: confirmPasswordValidator }
+    );
+  }
 
   @Output() public handleFormData = new EventEmitter<UserRegister>();
 

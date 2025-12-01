@@ -4,6 +4,7 @@ import { Card } from '../card/card';
 import { UserRegister } from '../model/register/user-register';
 import { RegisterForm } from '../register-form/register-form';
 import { AuthService } from '../service/auth/auth-service';
+import { SnackbarService } from '../service/notification/snackbar-service';
 
 @Component({
   selector: 'app-register-component',
@@ -15,17 +16,18 @@ import { AuthService } from '../service/auth/auth-service';
 export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: SnackbarService
   ) {}
   ngOnInit(): void {}
 
   async onHandleFormData(user: UserRegister) {
     try {
       const res = await this.authService.register(user);
-      alert('register successful'); //placeholder for now
+      this.snackBar.open('Account was created', 'success');
       this.router.navigateByUrl('/login');
     } catch (err) {
-      alert('Some error occured');
+      this.snackBar.open('An unexpected error occurred', 'error');
     }
   }
 }

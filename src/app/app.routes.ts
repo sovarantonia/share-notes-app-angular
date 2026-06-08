@@ -1,13 +1,18 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './home-page/home-page';
 import { LandingPage } from './landing-page/landing-page';
-import { LoginComponent } from './login-component/login-component';
-import { RegisterComponent } from './register-component/register-component';
+
 import { AuthGuard } from './service/auth/auth-guard';
+import { RegisterPage } from './register-page/register-page';
+import { LoginPage } from './login-page/login-page';
 
 export const routes: Routes = [
   { path: '', component: LandingPage, title: 'Share notes app' },
-  { path: 'login', component: LoginComponent, title: 'Login' },
-  { path: 'register', component: RegisterComponent, title: 'Register' },
-  { path: 'home', component: HomePage, canActivate: [AuthGuard], title: 'Home' },
+  {
+    path: 'app',
+    canActivate: [AuthGuard],
+    children: [{ path: 'home', component: HomePage, title: 'Home' }],
+  },
+  { path: 'login', component: LoginPage, title: 'Login' },
+  { path: 'register', component: RegisterPage, title: 'Register' },
 ];

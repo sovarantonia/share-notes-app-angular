@@ -1,14 +1,14 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label for="email">Email: </label>
     <input id="email" type="email" formControlName="email" />
     
-    @if(email?.invalid && (email?.touched || email?.dirty)) {
-        @if (email?.hasError('required')) {
+    @if(this.loginForm.get('email')?.invalid && (this.loginForm.get('email')?.touched || this.loginForm.get('email')?.dirty)) {
+        @if (this.loginForm.hasError('required')) {
             <div>
                 Email is required
             </div>
         } 
-        @else if (email?.hasError('email')) {
+        @else if (this.loginForm.hasError('email')) {
             <div>
                 Invalid email format
             </div>
@@ -18,8 +18,8 @@
     <label for="password">Password: </label>
     <input id="password" type="password" formControlName="password" />
 
-    @if(password?.invalid && (password?.touched || password?.dirty)) {
-        @if (email?.hasError('required')) {
+    @if(this.loginForm.get('password')?.invalid && (this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty)) {
+        @if (this.loginForm.hasError('required')) {
             <div>
                 Password is required
             </div>
@@ -27,4 +27,7 @@
     }
 
     <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+
+    <a routerLink="/register">Don't have an account? Register now </a>
 </form>
+

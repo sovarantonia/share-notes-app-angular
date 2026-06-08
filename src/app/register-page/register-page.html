@@ -1,0 +1,58 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <label for="firstName">First name:</label>
+  <input id="firstName" formControlName="firstName" />
+
+  @if (this.registerForm.get('firstName')?.invalid && (this.registerForm.get('firstName')?.touched || this.registerForm.get('firstName')?.dirty)) {
+    <div>First name is required</div>
+  }
+
+  <label for="lastName">Last name:</label>
+  <input id="lastName" formControlName="lastName" />
+
+  @if (this.registerForm.get('lastName')?.invalid && (this.registerForm.get('lastName')?.touched || this.registerForm.get('lastName')?.dirty)) {
+    <div>Last name is required</div>
+  }
+
+  <label for="email">Email:</label>
+  <input id="email" formControlName="email" />
+
+  @if (this.registerForm.get('email')?.invalid && (this.registerForm.get('email')?.touched || this.registerForm.get('email')?.dirty)) {
+      @if (this.registerForm.hasError('required')) {
+        <div>Email is required</div>
+      } @else if (this.registerForm.hasError('email')) {
+        <div>Invalid email format</div>
+      }
+      @else if (this.registerForm.hasError('emailExists')) {
+        <div>
+          This email is already taken
+        </div>
+      }
+
+  }
+
+  <label for="password">Password:</label>
+  <input id="password" formControlName="password" type="password" />
+
+  @if (this.registerForm.get('password')?.invalid && (this.registerForm.get('password')?.touched || this.registerForm.get('password')?.dirty)) {
+    @if (this.registerForm.hasError('required')) {
+      <div>Password is required</div>
+    } @else if (this.registerForm.hasError('minlength')) {
+      <div>Password should have minimum 5 characters</div>
+    }
+  }
+
+  <label for="confirmPassword">Confirm password:</label>
+  <input id="confirmPassword" formControlName="confirmPassword" type="password" />
+
+  @if (this.registerForm.get('confirmPassword')?.invalid && (this.registerForm.get('confirmPassword')?.touched || this.registerForm.get('confirmPassword')?.dirty)) {
+    @if (this.registerForm.hasError('required')) {
+      <div>Password is required</div>
+    } @else if (registerForm.hasError('passwordsNotMatching')) {
+      <div>Passwords do not match</div>
+    }
+  }
+
+  <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
+  <a routerLink="/login">Already have an account? Log in now </a>
+</form>

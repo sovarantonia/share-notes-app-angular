@@ -1,31 +1,36 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
-import { UserLogin } from '../../model/login/user-login';
-import { UserRegister } from '../../model/register/user-register';
-import { User } from '../../model/user/user';
+import { Observable, tap } from 'rxjs';
+import { environment } from '../../../environment/environment';
+import { UserLoginRequest } from '../../model/user/user-login-request';
 import { UserLoginResponse } from '../../model/user/user-login-response';
+import { UserRequest } from '../../model/user/user-request';
+import { UserResponse } from '../../model/user/user-response';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly baseUrl = 'http://localhost:8080';
+  private readonly baseUrl = environment.baseUrl;
   private readonly TOKEN_KEY = 'tokenValue';
   private readonly http: HttpClient = inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
 
-  async login(user: UserLogin): Promise<UserLoginResponse> {
-    const res = await firstValueFrom(
-      this.http.post<UserLoginResponse>(`${this.baseUrl}/login`, user)
+  login(userLoginRequest: UserLoginRequest): Observable<UserLoginResponse> {
+    return this.http.post<UserLoginResponse>(`${this.baseUrl}/login`, userLoginRequest).pipe(
+      tap((res) => {
+        this.setToken(res.tokenValue);
+      })
     );
-
-    sessionStorage.setItem(this.TOKEN_KEY, res.tokenValue);
-
-    return res;
   }
 
-  async register(user: UserRegister): Promise<User> {
-    return await firstValueFrom(this.http.post<User>(`${this.baseUrl}/register`, user));
+  setToken(token: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.setItem('tokenValue', token);
+    }
+  }
+
+  register(userRequest: UserRequest): Observable<UserResponse> {
+    return this.http.post<UserResponse>(`${this.baseUrl}/register`, userRequest);
   }
 
   getToken(): string | null {

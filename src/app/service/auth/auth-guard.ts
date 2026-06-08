@@ -1,3 +1,5 @@
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -7,20 +9,26 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { AuthService } from './auth-service';
-import { Injectable } from '@angular/core';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
+  platformId = inject(PLATFORM_ID);
   constructor(
-    private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
+  
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return true;
+    }
+
     if (this.authService.getToken()) {
       return true;
     }
-    this.router.navigate(['login'], { queryParams: { returnUrl: state.url } });
 
-    return false;
+    return this.router.createUrlTree(['/login'], {
+      queryParams: { returnUrl: state.url },
+    });
   }
 }

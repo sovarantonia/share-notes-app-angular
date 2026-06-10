@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserLoginRequest } from '../model/user/user-login-request';
 import { AuthService } from '../service/auth/auth-service';
@@ -11,21 +17,21 @@ import { SnackbarService } from '../service/notification/snackbar-service';
   styleUrl: './login-page.css',
 })
 export class LoginPage implements OnInit {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private snackbarService: SnackbarService,
     private fb: FormBuilder
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
   }
-
-  ngOnInit(): void {}
 
   onSubmit() {
     if (this.loginForm.invalid) {

@@ -7,12 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { RouterLink } from '@angular/router';
 import { UserRequest } from '../model/user/user-request';
 import { AuthService } from '../service/auth/auth-service';
 import { SnackbarService } from '../service/notification/snackbar-service';
-import { EmailExistsValidator } from '../validator/email-exists-validator';
-import { confirmPasswordValidator } from '../validator/password-validator';
-import { RouterLink } from '@angular/router';
+import { EmailExistsValidator } from '../service/validator/email-exists-validator';
+import { confirmPasswordValidator } from '../service/validator/password-validator';
 
 @Component({
   selector: 'app-register-page',
@@ -22,14 +22,16 @@ import { RouterLink } from '@angular/router';
   standalone: true,
 })
 export class RegisterPage implements OnInit {
-  registerForm: FormGroup;
+  registerForm!: FormGroup;
 
   constructor(
     private emailExistsValidator: EmailExistsValidator,
     private fb: FormBuilder,
     private authService: AuthService,
     private snackbarService: SnackbarService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
         firstName: new FormControl('', [Validators.required]),
@@ -45,8 +47,6 @@ export class RegisterPage implements OnInit {
       { validators: confirmPasswordValidator }
     );
   }
-
-  ngOnInit(): void {}
 
   onSubmit() {
     if (this.registerForm.invalid) {

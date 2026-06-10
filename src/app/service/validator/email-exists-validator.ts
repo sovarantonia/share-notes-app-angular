@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { catchError, debounceTime, map, Observable, of, switchMap } from 'rxjs';
-import { environment } from '../../environment/environment';
+import { environment } from '../../../environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class EmailExistsValidator {
@@ -18,19 +18,17 @@ export class EmailExistsValidator {
       return of(control.value).pipe(
         debounceTime(500),
         switchMap((email) =>
-          this.http
-            .get(`${this.baseUrl}/user/email`, { params: { email } })
-            .pipe(
-              map((response) => {
-                return { emailExists: true };
-              }),
-              catchError((err) => {
-                if (err.status === 404) {
-                  return of(null);
-                }
-                return of({ serverError: true });
-              })
-            )
+          this.http.get(`${this.baseUrl}/user/email`, { params: { email } }).pipe(
+            map((response) => {
+              return { emailExists: true };
+            }),
+            catchError((err) => {
+              if (err.status === 404) {
+                return of(null);
+              }
+              return of({ serverError: true });
+            })
+          )
         )
       );
     };

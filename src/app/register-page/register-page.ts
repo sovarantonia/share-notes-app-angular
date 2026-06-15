@@ -8,9 +8,9 @@ import {
 } from '@angular/forms';
 
 import { RouterLink } from '@angular/router';
+import { SnackbarService } from '../components/notification/snackbar-service';
 import { UserRequest } from '../model/user/user-request';
 import { AuthService } from '../service/auth/auth-service';
-import { SnackbarService } from '../service/notification/snackbar-service';
 import { EmailExistsValidator } from '../service/validator/email-exists-validator';
 import { confirmPasswordValidator } from '../service/validator/password-validator';
 

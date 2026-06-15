@@ -1,0 +1,22 @@
+.example-container {
+  height: 100vh;
+}
+
+.example-sidenav {
+  width: 240px;
+}
+
+.content {
+  padding: 1rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.08);
+}

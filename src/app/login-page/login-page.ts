@@ -7,9 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { SnackbarService } from '../components/notification/snackbar-service';
 import { UserLoginRequest } from '../model/user/user-login-request';
 import { AuthService } from '../service/auth/auth-service';
-import { SnackbarService } from '../service/notification/snackbar-service';
 @Component({
   selector: 'app-login-page',
   imports: [ReactiveFormsModule, RouterLink],

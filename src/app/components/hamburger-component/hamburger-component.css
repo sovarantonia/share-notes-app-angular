@@ -1,0 +1,51 @@
+.menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.container {
+  position: relative;
+  width: 24px;
+  height: 18px;
+}
+
+.inner,
+.inner::before,
+.inner::after {
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  transition: 0.3s ease;
+  content: '';
+}
+
+.inner {
+  top: 8px;
+}
+
+.inner::before {
+  top: -8px;
+}
+
+.inner::after {
+  top: 8px;
+}
+
+.menu.active .inner {
+  background: transparent;
+}
+
+.menu.active .inner::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.menu.active .inner::after {
+  top: 0;
+  transform: rotate(-45deg);
+}

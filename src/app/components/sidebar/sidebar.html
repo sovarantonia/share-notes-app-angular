@@ -1,0 +1,22 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer [mode]="mode" [opened]="mode === 'side'" class="example-sidenav">
+    <mat-nav-list>
+      @for (item of navItems; track item.route) {
+        <a mat-list-item [routerLink]="item.route" routerLinkActive="active"> <span>{{ item.label }}</span> </a>
+        }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-hamburger-component
+      [initialState]="mode === 'side'"
+      [closed]="drawer.closedStart"
+      (trigger)="drawer.toggle()"
+    />
+    <span class="title">My Application</span>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -2,8 +2,13 @@
   <mat-sidenav #drawer [mode]="mode" [opened]="mode === 'side'" class="example-sidenav">
     <mat-nav-list>
       @for (item of navItems; track item.route) {
-        <a mat-list-item [routerLink]="item.route" routerLinkActive="active"> <span>{{ item.label }}</span> </a>
-        }
+        <a mat-list-item [routerLink]="item.route" routerLinkActive="active">
+          <span>{{ item.label }}</span>
+        </a>
+      }
+      @if (showLogoutOption) {
+        <button mat-list-item (click)="onLogoutClick()">Logout</button>
+      }
     </mat-nav-list>
   </mat-sidenav>
 
@@ -13,7 +18,7 @@
       [closed]="drawer.closedStart"
       (trigger)="drawer.toggle()"
     />
-    <span class="title">My Application</span>
+    <!-- <span class="title">My Application</span> -->
 
     <div class="content">
       <router-outlet></router-outlet>

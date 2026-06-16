@@ -6,14 +6,13 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthInterceptor implements HttpInterceptor {
+  private platformId = inject(PLATFORM_ID);
   constructor(private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
 
-    const platformId = inject(PLATFORM_ID);
-
-    if (!isPlatformBrowser(platformId)) {
+    if (!isPlatformBrowser(this.platformId)) {
       return next.handle(req);
     }
 
@@ -33,7 +32,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((err) => {
-        if (err.status === 401 || err.status == 400) {
+        if (err.status === 401) {
           this.authService.logout();
         }
 

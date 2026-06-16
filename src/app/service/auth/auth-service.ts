@@ -35,12 +35,12 @@ export class AuthService {
 
   getToken(): string | null {
     if (isPlatformBrowser(this.platformId)) {
-      return sessionStorage.getItem(this.TOKEN_KEY);
+      return sessionStorage.getItem('tokenValue');
     }
     return null;
   }
 
   logout(): void {
-    sessionStorage.removeItem(this.TOKEN_KEY);
+    sessionStorage.removeItem('tokenValue');
   }
 }

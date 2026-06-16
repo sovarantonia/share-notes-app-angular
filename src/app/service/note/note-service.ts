@@ -9,7 +9,7 @@ import { NoteSearchFilters } from '../../model/note/note-search-filters';
 
 @Injectable({ providedIn: 'root' })
 export class NoteService {
-  private readonly baseUrl = `${environment.baseUrl}/'notes`;
+  private readonly baseUrl = `${environment.baseUrl}/notes`;
   private http: HttpClient = inject(HttpClient);
 
   getById(id: string): Observable<NoteResponse> {

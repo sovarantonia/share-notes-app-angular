@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -23,12 +23,18 @@ import { NavItem } from '../../model/nav-item';
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
-  mode: MatDrawerMode = 'over';
+  mode: MatDrawerMode = 'side';
   @Input() navItems: NavItem[] = [];
+  @Input() showLogoutOption = false;
+  @Output() logoutClicked = new EventEmitter<void>();
 
   constructor(private breakpointObserver: BreakpointObserver) {
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe((result) => {
       this.mode = result.matches ? 'over' : 'side';
     });
+  }
+
+  onLogoutClick() {
+    this.logoutClicked.emit();
   }
 }

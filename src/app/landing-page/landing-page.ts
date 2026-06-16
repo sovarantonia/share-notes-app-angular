@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { Sidebar } from "../components/sidebar/sidebar";
 @Component({
   selector: 'app-landing-page',
-  imports: [RouterLink, Sidebar, RouterOutlet],
+  imports: [Sidebar, RouterOutlet],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
   standalone: true,

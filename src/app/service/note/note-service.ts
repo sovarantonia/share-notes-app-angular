@@ -61,10 +61,21 @@ export class NoteService {
     return this.http.get<NoteResponse[]>(`${this.baseUrl}/latest`);
   }
 
-  getAverageGradesBetweenDates(startDate: string, endDate: string): Observable<GradeSummary[]> {
+  private formatDate(date: Date): string {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
+
+  getAverageGradesBetweenDates(startDate: Date, endDate: Date): Observable<GradeSummary[]> {
+    const formattedStartDate = this.formatDate(startDate);
+    const formattedEndDate  = this.formatDate(endDate);
+    
     let params = new HttpParams();
-    params = params.set('startDate', startDate);
-    params = params.set('endDate', endDate);
+    params = params.set('startDate', formattedStartDate);
+    params = params.set('endDate', formattedEndDate);
 
     return this.http.get<GradeSummary[]>(`${this.baseUrl}/dates`, { params: params });
   }

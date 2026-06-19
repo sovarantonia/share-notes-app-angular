@@ -1,19 +1,21 @@
 <section>
   <h1>Weekly chart</h1>
+  <app-date-picker (dateRangeChanged)="onDateRangeChanged($event)"/>
+  <app-grade-chart [gradeSummary]="gradeSummary$ | async" />
 </section>
 
 <section>
   <h1>Latest notes</h1>
   @if (latestNotes$ | async; as latestNotes) {
     @for (note of latestNotes; track note.id) {
-      <h2>{{note.title}}</h2>
-      <p>{{note.text}}</p>
-      <p>{{note.date}}</p>
-      <p>{{note.grade}}</p>
+      <h2>{{ note.title }}</h2>
+      <p>{{ note.text }}</p>
+      <p>{{ note.date }}</p>
+      <p>{{ note.grade }}</p>
       <div>
         <p>Tags:</p>
         @for (tag of note.tags; track tag.id) {
-            <p>{{tag.name}}</p>
+          <p>{{ tag.name }}</p>
         }
       </div>
     }

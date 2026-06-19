@@ -1,22 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { NoteService } from '../service/note/note-service';
-import { SnackbarService } from '../components/notification/snackbar-service';
-import { NoteResponse } from '../model/note/note-response';
 import { AsyncPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
+import { DatePicker, DateRangeSelection } from '../components/date-picker/date-picker';
+import { GradeChart } from '../components/grade-chart/grade-chart';
+import { SnackbarService } from '../components/notification/snackbar-service';
+import { GradeSummary } from '../model/note/grade-summary';
+import { NoteResponse } from '../model/note/note-response';
+import { NoteService } from '../service/note/note-service';
+
 @Component({
   selector: 'app-home-page',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, GradeChart, MatDatepickerModule, DatePicker],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
-  standalone: true
+  standalone: true,
 })
 export class HomePage implements OnInit {
   latestNotes$!: Observable<NoteResponse[]>;
-  constructor(private noteService: NoteService, private snackbarService: SnackbarService) {}
+  gradeSummary$!: Observable<GradeSummary[]>;
+  constructor(
+    private noteService: NoteService,
+    private snackbarService: SnackbarService
+  ) {}
+
   ngOnInit(): void {
     this.latestNotes$ = this.noteService.getLatestNotes();
   }
 
+  onDateRangeChanged(range: DateRangeSelection) {
+    if (range.startDate && range.endDate) {
+      this.gradeSummary$ = this.noteService.getAverageGradesBetweenDates(
+        range.startDate,
+        range.endDate
+      );
+    }
+  }
 }

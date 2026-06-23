@@ -1,1 +1,40 @@
-<p>profile-page works!</p>
+<div>
+  <div>
+    <h1>Edit profile</h1>
+
+    <form [formGroup]="profileForm" (ngSubmit)="onEditProfileSubmit()">
+      <label for="firstName">First name:</label>
+      <input id="firstName" type="text" formControlName="firstName" />
+
+      @if (
+        profileForm.get('firstName')?.invalid &&
+        (profileForm.get('firstName')?.touched || profileForm.get('firstName')?.dirty)
+      ) {
+        @if (profileForm.hasError('required')) {
+          <p>First name is required</p>
+        }
+      }
+
+      <label for="lastName">Last name:</label>
+      <input id="lastName" type="text" formControlName="lastName" />
+
+      @if (
+        profileForm.get('lastName')?.invalid &&
+        (profileForm.get('lastName')?.touched || profileForm.get('lastName')?.dirty)
+      ) {
+        @if (profileForm.hasError('required')) {
+          <p>Last name is required</p>
+        }
+      }
+
+      <label for="email">Email:</label>
+      <input id="email" type="text" formControlName="email" />
+
+      <button type="submit" [disabled]="profileForm.invalid">Submit</button>
+    </form>
+  </div>
+
+  <div>
+    <button (click)="onDeleteClicked()">Delete account</button>
+  </div>
+</div>

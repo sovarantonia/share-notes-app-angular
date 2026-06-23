@@ -63,10 +63,10 @@ export class RegisterPage implements OnInit {
 
     this.authService.register(userRequest).subscribe({
       next: () => {
-        this.snackbarService.open('Account was created', 'success');
+        this.snackbarService.open('Account was created');
       },
       error: () => {
-        this.snackbarService.open('Something went wrong', 'error');
+        this.snackbarService.open('Something went wrong');
       },
     });
   }

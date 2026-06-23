@@ -7,7 +7,7 @@ import { UserResponse } from '../../model/user/user-response';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private readonly baseUrl = `${environment.baseUrl}/'user`;
+  private readonly baseUrl = `${environment.baseUrl}/user`;
   private http: HttpClient = inject(HttpClient);
 
   getById(id: string): Observable<UserResponse> {

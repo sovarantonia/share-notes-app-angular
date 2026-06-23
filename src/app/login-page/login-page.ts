@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/app/home']);
       },
       error: () => {
-        this.snackbarService.open('Invalid email or password', 'error');
+        this.snackbarService.open('Invalid email or password');
       },
     });
   }

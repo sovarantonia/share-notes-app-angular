@@ -1,5 +1,4 @@
 export interface NoteRequest {
-  userId: number;
   title: string;
   text: string;
   grade: number;

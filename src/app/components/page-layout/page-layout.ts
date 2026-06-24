@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Sidebar } from '../sidebar/sidebar';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../service/auth/auth-service';
+import { Sidebar } from '../sidebar/sidebar';
 
 @Component({
   selector: 'app-page-layout',
@@ -10,7 +10,10 @@ import { AuthService } from '../../service/auth/auth-service';
   styleUrl: './page-layout.css',
 })
 export class PageLayout {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   sidebarNavItems = [
     {
@@ -19,7 +22,7 @@ export class PageLayout {
     },
     {
       route: '/app/profile',
-      label: 'Profile'
+      label: 'Profile',
     },
     {
       route: '/app/add-note',
@@ -27,21 +30,20 @@ export class PageLayout {
     },
     {
       route: '/app/my-notes',
-      label: 'My notes'
+      label: 'My notes',
     },
     {
       route: '/app/friends',
-      label: 'Friend list'
+      label: 'Friend list',
     },
     {
       route: '/app/shares',
-      label: 'Shared notes'
-    }
+      label: 'Shared notes',
+    },
   ];
 
   logout() {
     this.authService.logout();
-    this.router.navigate(["/login"]);
+    this.router.navigate(['/login']);
   }
-
 }

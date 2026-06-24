@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Injectable, OnInit, Output, inject } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core';
 import {
   DateRange,
@@ -72,16 +72,9 @@ export interface DateRangeSelection {
       provide: MAT_DATE_RANGE_SELECTION_STRATEGY,
       useClass: SevenDayRangeSelectionStrategy,
     },
-    { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
+   
   ],
-  imports: [
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [MatDatepickerModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './date-picker.html',
   styleUrl: './date-picker.css',
 })

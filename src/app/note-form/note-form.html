@@ -1,0 +1,86 @@
+<div>
+  <h2>{{ formTitle }}</h2>
+  <div>
+    <form [formGroup]="noteForm">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+        @if (
+          noteForm.get('title')?.invalid &&
+          (noteForm.get('title')?.touched || noteForm.get('title')?.dirty)
+        ) {
+          <div>Title is required</div>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Text</mat-label>
+        <textarea
+          formControlName="text"
+          matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="10"
+        >
+        </textarea>
+        @if (
+          noteForm.get('text')?.invalid &&
+          (noteForm.get('text')?.touched || noteForm.get('text')?.dirty)
+        ) {
+          <div>Note content is required</div>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" [max]="today" formControlName="date" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Grade</mat-label>
+        <mat-select formControlName="grade">
+          @for (grade of gradeOptions; track grade.value) {
+            <mat-option [value]="grade.value">{{ grade.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Tags</mat-label>
+        <mat-chip-grid #chipGrid>
+          @for (tag of tags(); track tag) {
+            <mat-chip-row (removed)="removeTag(tag)"
+              >{{ tag }}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          }
+        </mat-chip-grid>
+        <input
+          name="currentTag"
+          placeholder="New tag..."
+          #tagInput
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="addTag($event)"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selectedTag($event); tagInput.value = ''"
+        >
+          @for (tag of filteredTags(); track tag) {
+            <mat-option [value]="tag">{{ tag }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <button type="submit" (click)="onSubmit()" [disabled]="noteForm.invalid">Submit</button>
+    </form>
+  </div>
+</div>

@@ -21,15 +21,6 @@ button[type='submit'] {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.snackbar-success {
-  background-color: #2db34b;
-  color: white;
-}
-
-.snackbar-error {
-  background-color: #f44336;
-  color: white;
-}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

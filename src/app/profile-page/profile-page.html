@@ -10,9 +10,7 @@
         profileForm.get('firstName')?.invalid &&
         (profileForm.get('firstName')?.touched || profileForm.get('firstName')?.dirty)
       ) {
-        @if (profileForm.hasError('required')) {
-          <p>First name is required</p>
-        }
+        <div>First name is required</div>
       }
 
       <label for="lastName">Last name:</label>
@@ -22,9 +20,7 @@
         profileForm.get('lastName')?.invalid &&
         (profileForm.get('lastName')?.touched || profileForm.get('lastName')?.dirty)
       ) {
-        @if (profileForm.hasError('required')) {
-          <p>Last name is required</p>
-        }
+        <div>Last name is required</div>
       }
 
       <label for="email">Email:</label>

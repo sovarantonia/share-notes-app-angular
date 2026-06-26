@@ -142,5 +142,14 @@ export class NoteForm implements OnInit {
     };
 
     this.formSubmitted.emit(note);
+    
+    this.noteForm.reset({
+      title: '',
+      text: '',
+      date: new Date(),
+      grade: 1
+    });
+    this.tags.set([]);
+    this.currentTag.set('');
   }
 }

@@ -1,0 +1,7 @@
+<h2 mat-dialog-title>View note</h2>
+<mat-dialog-content>
+  <app-note-form [note]="note" (formSubmitted)="onDialogSubmit($event)" />
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton mat-dialog-close> Close </button>
+</mat-dialog-actions>

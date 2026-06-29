@@ -20,15 +20,17 @@ import {
   MatAutocompleteModule,
   type MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
+import { MatAnchor } from '@angular/material/button';
 import { type MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { NoteRequest } from '../model/note/note-request';
+import { NoteResponse } from '../model/note/note-response';
 import { ViewSelectValue } from '../model/view-select-value';
 import { TagService } from '../service/tag/tag-service';
-import { MatDatepicker, MatDatepickerModule } from "@angular/material/datepicker";
 @Component({
   selector: 'app-note-form',
   imports: [
@@ -41,6 +43,7 @@ import { MatDatepicker, MatDatepickerModule } from "@angular/material/datepicker
     MatIcon,
     MatDatepicker,
     MatDatepickerModule,
+    MatAnchor,
   ],
   templateUrl: './note-form.html',
   styleUrl: './note-form.css',
@@ -50,6 +53,7 @@ export class NoteForm implements OnInit {
 
   @Input() formTitle!: string;
   @Input() isEditMode: boolean = false;
+  @Input() note: NoteResponse | null = null;
 
   @Output() formSubmitted = new EventEmitter<NoteRequest>();
 
@@ -74,9 +78,9 @@ export class NoteForm implements OnInit {
   filteredTags = computed(() => {
     const currentTag = this.currentTag().toLowerCase();
 
-    return currentTag
-      ? this.allTagOptions().filter((tag) => tag.toLowerCase().includes(currentTag))
-      : this.allTagOptions();
+    return this.allTagOptions()
+      .filter((tag) => !this.tags().includes(tag))
+      .filter((tag) => (currentTag ? tag.toLowerCase().includes(currentTag) : true));
   });
 
   readonly today = new Date();
@@ -93,6 +97,18 @@ export class NoteForm implements OnInit {
       date: new FormControl(new Date(), [Validators.required]),
       grade: new FormControl(1, [Validators.required]),
     });
+
+    if (this.note) {
+      this.noteForm.patchValue({
+        title: this.note.title,
+        text: this.note.text,
+        date: new Date(this.note.date),
+        grade: this.note.grade,
+      });
+      this.noteForm.get('date')?.disable();
+
+      this.tags.set(this.note.tags.map((t) => t.name));
+    }
 
     this.tagService.getTagsForUser().subscribe({
       next: (tags) => {
@@ -122,7 +138,12 @@ export class NoteForm implements OnInit {
   }
 
   selectedTag(event: MatAutocompleteSelectedEvent): void {
-    this.tags.update((tags) => [...tags, event.option.viewValue]);
+    const value = event.option.viewValue;
+
+    if (value && !this.tags().includes(value)) {
+      this.tags.update((tags) => [...tags, value]);
+    }
+
     this.currentTag.set('');
     event.option.deselect();
   }
@@ -136,18 +157,18 @@ export class NoteForm implements OnInit {
     const note: NoteRequest = {
       title: formValue.title,
       text: formValue.text,
-      date: formValue.date, 
+      date: formValue.date,
       grade: formValue.grade,
       tags: this.tags(),
     };
 
     this.formSubmitted.emit(note);
-    
+
     this.noteForm.reset({
       title: '',
       text: '',
       date: new Date(),
-      grade: 1
+      grade: 1,
     });
     this.tags.set([]);
     this.currentTag.set('');

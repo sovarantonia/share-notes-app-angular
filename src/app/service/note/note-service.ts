@@ -24,7 +24,7 @@ export class NoteService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  update(id: string, noteRequest: NoteRequest): Observable<NoteResponse> {
+  update(id: number, noteRequest: NoteRequest): Observable<NoteResponse> {
     return this.http.patch<NoteResponse>(`${this.baseUrl}/${id}`, noteRequest);
   }
 

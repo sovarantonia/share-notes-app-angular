@@ -1,0 +1,27 @@
+@if (notes$ | async; as notes) {
+  @for (note of notes; track note.id) {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{ note.title }}
+          <mat-chip>
+            {{ note.date | date: 'dd-MM-yyyy' }}
+          </mat-chip>
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        @for (tag of note.tags; track $index) {
+          <mat-chip> {{ tag.name }} </mat-chip>
+        }
+        <p>{{ note.text }}</p>
+        <mat-label>Grade: </mat-label>
+        <mat-chip> {{ note.grade }} </mat-chip>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button matButton (click)="onViewClick(note.id, note)">View</button>
+      </mat-card-actions>
+    </mat-card>
+  }
+}

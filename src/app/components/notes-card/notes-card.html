@@ -21,6 +21,9 @@
 
       <mat-card-actions>
         <button matButton (click)="onViewClick(note.id, note)">View</button>
+        <button color="warn" mat-icon-button (click)="onDeleteClick(note.id)" aria-label="Delete note">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   }

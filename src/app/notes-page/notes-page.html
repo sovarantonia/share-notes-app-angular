@@ -1,1 +1,5 @@
-<app-notes-card [notes$]="allNotes$" (noteUpdated)="updateNote($event)" />
+<app-notes-card
+  [notes$]="allNotes$"
+  (noteUpdated)="updateNote($event)"
+  (noteDeleted)="deleteNote($event)"
+/>

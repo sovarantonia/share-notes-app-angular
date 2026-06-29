@@ -35,4 +35,16 @@ export class NotesPage implements OnInit {
       },
     });
   }
+
+  deleteNote(id: number) {
+    this.noteService.delete(id).subscribe({
+      next: () => {
+        this.snackbarService.open('Note was deleted');
+        this.allNotes$ = this.noteService.getAllByUser();
+      },
+      error: () => {
+        this.snackbarService.open('Could not delete the note');
+      },
+    });
+  }
 }

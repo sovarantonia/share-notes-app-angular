@@ -20,7 +20,7 @@ export class NoteService {
     return this.http.post<NoteResponse>(this.baseUrl, noteRequest);
   }
 
-  delete(id: string): Observable<void> {
+  delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 

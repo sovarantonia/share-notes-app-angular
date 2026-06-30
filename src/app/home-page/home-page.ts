@@ -8,10 +8,11 @@ import { SnackbarService } from '../components/notification/snackbar-service';
 import { GradeSummary } from '../model/note/grade-summary';
 import { NoteResponse } from '../model/note/note-response';
 import { NoteService } from '../service/note/note-service';
+import { NotesCard } from "../components/notes-card/notes-card";
 
 @Component({
   selector: 'app-home-page',
-  imports: [AsyncPipe, GradeChart, MatDatepickerModule, DatePicker],
+  imports: [AsyncPipe, GradeChart, MatDatepickerModule, DatePicker, NotesCard],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
   standalone: true,
@@ -21,7 +22,6 @@ export class HomePage implements OnInit {
   gradeSummary$!: Observable<GradeSummary[]>;
   constructor(
     private noteService: NoteService,
-    private snackbarService: SnackbarService
   ) {}
 
   ngOnInit(): void {

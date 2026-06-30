@@ -22,6 +22,7 @@ export class NotesCard {
   @Input() notes$!: Observable<NoteResponse[]>;
   @Output() noteUpdated = new EventEmitter<{ id: number; data: NoteRequest }>();
   @Output() noteDeleted = new EventEmitter<number>();
+  @Input() isViewMode = false;
 
   readonly dialog = inject(MatDialog);
 

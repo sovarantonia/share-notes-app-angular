@@ -14,15 +14,15 @@ export class RequestService {
     return this.http.post<RequestResponse>(this.baseUrl, requestRequest);
   }
 
-  delete(id: string): Observable<void> {
+  delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  accept(id: string): Observable<RequestResponse> {
+  accept(id: number): Observable<RequestResponse> {
     return this.http.patch<RequestResponse>(`${this.baseUrl}/${id}/accept`, null);
   }
 
-  decline(id: string): Observable<RequestResponse> {
+  decline(id: number): Observable<RequestResponse> {
     return this.http.patch<RequestResponse>(`${this.baseUrl}/${id}/decline`, null);
   }
 
@@ -34,11 +34,11 @@ export class RequestService {
     return this.http.get<RequestResponse[]>(`${this.baseUrl}/received`);
   }
 
-  getById(id: string): Observable<RequestResponse> {
+  getById(id: number): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}/${id}`);
   }
 
-  removeFromFriendList(friendId: string): Observable<void> {
+  removeFromFriendList(friendId: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/remove-friend/${friendId}`);
   }
 }

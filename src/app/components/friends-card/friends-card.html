@@ -1,0 +1,28 @@
+@if (items$ | async; as items) {
+  @for (item of items; track item.id) {
+    <mat-card>
+      <mat-card-header> {{ item.user.firstName }} {{ item.user.lastName }} </mat-card-header>
+      <mat-card-content>
+        {{ item.user.email }}
+        @if (item.sentAt) {
+          Sent at: {{ item.sentAt | date: 'short' }}
+        }
+      </mat-card-content>
+      <mat-card-actions>
+        @if (mode === 'friends') {
+          <button matButton (click)="removeFriend.emit(item.user.id)">Remove</button>
+        }
+
+        @if (mode === 'sent') {
+          <button matButton (click)="cancelRequest.emit(item.id!)">Cancel</button>
+        }
+
+        @if (mode === 'received') {
+          <button matButton (click)="acceptRequest.emit(item.id!)">Accept</button>
+
+          <button matButton color="warn" (click)="declineRequest.emit(item.id!)">Decline</button>
+        }
+      </mat-card-actions>
+    </mat-card>
+  }
+}

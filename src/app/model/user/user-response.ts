@@ -1,7 +1,7 @@
 import { User } from './user';
 
 export interface UserResponse {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   email: string;

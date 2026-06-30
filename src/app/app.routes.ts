@@ -4,6 +4,7 @@ import { LandingPage } from './landing-page/landing-page';
 
 import { PageLayout } from './components/page-layout/page-layout';
 import { CreateNotePage } from './create-note-page/create-note-page';
+import { FriendsPage } from './friends-page/friends-page';
 import { LoginPage } from './login-page/login-page';
 import { NotesPage } from './notes-page/notes-page';
 import { ProfilePage } from './profile-page/profile-page';
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'profile', component: ProfilePage, title: 'My profile' },
       { path: 'add-note', component: CreateNotePage, title: 'Create a note' },
       { path: 'my-notes', component: NotesPage, title: 'My notes' },
+      { path: 'friends', component: FriendsPage, title: 'My friends' },
     ],
   },
   { path: 'login', component: LoginPage, title: 'Login' },

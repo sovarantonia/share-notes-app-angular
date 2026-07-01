@@ -6,5 +6,9 @@
 
 <section>
   <h1>Latest notes</h1>
-  <app-notes-card [notes$]="latestNotes$" [isViewMode]="true" />
+  @if (latestNotes$ | async; as latestNotes) {
+    @for (note of latestNotes; track note.id) {
+      <app-notes-card [note]="note" [isViewMode]="true" [isReadonlyMode]="true" />
+    }
+  }
 </section>

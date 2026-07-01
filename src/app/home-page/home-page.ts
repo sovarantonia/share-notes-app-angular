@@ -4,11 +4,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
 import { DatePicker, DateRangeSelection } from '../components/date-picker/date-picker';
 import { GradeChart } from '../components/grade-chart/grade-chart';
-import { SnackbarService } from '../components/notification/snackbar-service';
+import { NotesCard } from '../components/notes-card/notes-card';
 import { GradeSummary } from '../model/note/grade-summary';
 import { NoteResponse } from '../model/note/note-response';
 import { NoteService } from '../service/note/note-service';
-import { NotesCard } from "../components/notes-card/notes-card";
+import { UserService } from '../service/user/user-service';
 
 @Component({
   selector: 'app-home-page',
@@ -20,9 +20,9 @@ import { NotesCard } from "../components/notes-card/notes-card";
 export class HomePage implements OnInit {
   latestNotes$!: Observable<NoteResponse[]>;
   gradeSummary$!: Observable<GradeSummary[]>;
-  constructor(
-    private noteService: NoteService,
-  ) {}
+  // currentUserId!: number;
+
+  constructor(private noteService: NoteService) {}
 
   ngOnInit(): void {
     this.latestNotes$ = this.noteService.getLatestNotes();

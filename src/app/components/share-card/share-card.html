@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-header>
+    @if (isReceived) {
+      <mat-label>From:</mat-label>
+      <mat-chip
+        >{{ share.sender.firstName }} {{ share.sender.lastName }} ({{
+          share.sender.email
+        }})</mat-chip
+      >
+    } @else {
+      <mat-label>To:</mat-label>
+      <mat-chip
+        >{{ share.receiver.firstName }} {{ share.receiver.lastName }} ({{
+          share.receiver.email
+        }})</mat-chip
+      >
+    }
+
+    <mat-chip>{{ share.sentAt | date: 'dd-MM-yyyy' }}</mat-chip>
+  </mat-card-header>
+  <app-notes-card [note]="share.sentNote" [isViewMode]="true" [isReadonlyMode]="true" />
+</mat-card>

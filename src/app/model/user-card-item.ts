@@ -1,7 +1,7 @@
-import { UserResponse } from './user/user-response';
+import { UserInfo } from './user/user-info';
 
 export interface UserCardItem {
   id: number;
-  user: UserResponse;
+  user: UserInfo;
   sentAt?: string;
 }

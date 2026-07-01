@@ -1,9 +1,9 @@
-import { UserResponse } from "../user/user-response";
+import { UserInfo } from '../user/user-info';
 
 export interface RequestResponse {
   id: number;
-  sender: UserResponse;
-  receiver: UserResponse;
+  sender: UserInfo;
+  receiver: UserInfo;
   status: 'ACCEPTED' | 'DECLINED' | 'PENDING';
   sentAt: string;
 }

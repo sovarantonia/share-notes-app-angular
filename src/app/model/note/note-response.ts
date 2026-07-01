@@ -1,8 +1,8 @@
 import { TagResponse } from '../tag/tag-response';
-import { UserResponse } from '../user/user-response';
+import { UserInfo } from '../user/user-info';
 
 export interface NoteResponse {
-  user: UserResponse;
+  user: UserInfo;
   id: number;
   title: string;
   text: string;

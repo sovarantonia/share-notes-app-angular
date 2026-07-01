@@ -3,15 +3,18 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { NoteRequest } from '../../model/note/note-request';
 import { NoteResponse } from '../../model/note/note-response';
 import { NoteForm } from '../../note-form/note-form';
+import { NoteDialogData } from '../../model/note-dialog-data';
+import { MatLabel } from "@angular/material/form-field";
+import { MatChip } from "@angular/material/chips";
 
 @Component({
   selector: 'app-view-note-dialog',
-  imports: [MatDialogModule, NoteForm],
+  imports: [MatDialogModule, NoteForm, MatLabel, MatChip],
   templateUrl: './view-note-dialog.html',
   styleUrl: './view-note-dialog.css',
 })
 export class ViewNoteDialog {
-  note = inject<NoteResponse>(MAT_DIALOG_DATA);
+  data = inject<NoteDialogData>(MAT_DIALOG_DATA);
 
   constructor(private dialogRef: MatDialogRef<ViewNoteDialog>) {}
 

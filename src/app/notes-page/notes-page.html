@@ -1,5 +1,9 @@
-<app-notes-card
-  [notes$]="allNotes$"
-  (noteUpdated)="updateNote($event)"
-  (noteDeleted)="deleteNote($event)"
-/>
+@if (allNotes$ | async; as allNotes) {
+  @for (note of allNotes; track note.id) {
+    <app-notes-card
+      [note]="note"
+      (noteUpdated)="updateNote($event)"
+      (noteDeleted)="deleteNote($event)"
+    />
+  }
+}

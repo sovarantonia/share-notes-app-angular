@@ -10,6 +10,7 @@ import { NotesPage } from './notes-page/notes-page';
 import { ProfilePage } from './profile-page/profile-page';
 import { RegisterPage } from './register-page/register-page';
 import { AuthGuard } from './service/auth/auth-guard';
+import { SharesPage } from './shares-page/shares-page';
 
 export const routes: Routes = [
   { path: '', component: LandingPage, title: 'Share notes app' },
@@ -23,6 +24,7 @@ export const routes: Routes = [
       { path: 'add-note', component: CreateNotePage, title: 'Create a note' },
       { path: 'my-notes', component: NotesPage, title: 'My notes' },
       { path: 'friends', component: FriendsPage, title: 'My friends' },
+      { path: 'shares', component: SharesPage, title: 'Shared notes' },
     ],
   },
   { path: 'login', component: LoginPage, title: 'Login' },

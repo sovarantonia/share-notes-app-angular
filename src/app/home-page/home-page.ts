@@ -20,7 +20,6 @@ import { UserService } from '../service/user/user-service';
 export class HomePage implements OnInit {
   latestNotes$!: Observable<NoteResponse[]>;
   gradeSummary$!: Observable<GradeSummary[]>;
-  // currentUserId!: number;
 
   constructor(private noteService: NoteService) {}
 

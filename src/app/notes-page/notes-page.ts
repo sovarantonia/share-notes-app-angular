@@ -5,10 +5,14 @@ import { Observable } from 'rxjs';
 import { Dialog } from '../components/dialog/dialog';
 import { NotesCard } from '../components/notes-card/notes-card';
 import { SnackbarService } from '../components/notification/snackbar-service';
+import { ShareDialog } from '../components/share-dialog/share-dialog';
 import { DialogData } from '../model/dialog-data';
 import { NoteRequest } from '../model/note/note-request';
 import { NoteResponse } from '../model/note/note-response';
+import { UserInfo } from '../model/user/user-info';
 import { NoteService } from '../service/note/note-service';
+import { ShareService } from '../service/share/share-service';
+import { UserService } from '../service/user/user-service';
 
 @Component({
   selector: 'app-notes-page',
@@ -20,9 +24,13 @@ export class NotesPage implements OnInit {
   allNotes$!: Observable<NoteResponse[]>;
   readonly dialog = inject(MatDialog);
 
+  friends!: UserInfo[];
+
   constructor(
     private noteService: NoteService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private userService: UserService,
+    private shareService: ShareService
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +73,34 @@ export class NotesPage implements OnInit {
           },
         });
       }
+    });
+  }
+
+  shareNote(id: number) {
+    this.userService.getFriends().subscribe({
+      next: (friends) => {
+        const data = friends.map((friend) => ({
+          value: friend.email,
+          viewValue: `${friend.firstName} ${friend.lastName} - ${friend.email}`,
+        }));
+
+        const dialogRef = this.dialog.open(ShareDialog, {
+          data,
+        });
+
+        dialogRef.afterClosed().subscribe((res) => {
+          if (res) {
+            this.shareService.shareNote(id, res).subscribe({
+              next: () => {
+                this.snackbarService.open('Note was shared');
+              },
+              error: () => {
+                this.snackbarService.open('Could not share the note');
+              },
+            });
+          }
+        });
+      },
     });
   }
 }

@@ -22,6 +22,7 @@ export class NotesCard {
 
   @Output() noteUpdated = new EventEmitter<{ id: number; data: NoteRequest }>();
   @Output() noteDeleted = new EventEmitter<number>();
+  @Output() noteShared = new EventEmitter<number>();
 
   readonly dialog = inject(MatDialog);
 
@@ -42,5 +43,9 @@ export class NotesCard {
 
   onDeleteClick(id: number) {
     this.noteDeleted.emit(id);
+  }
+
+  onShareClick(id: number) {
+    this.noteShared.emit(id);
   }
 }

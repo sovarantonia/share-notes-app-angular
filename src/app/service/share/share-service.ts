@@ -9,13 +9,13 @@ export class ShareService {
   private readonly baseUrl = `${environment.baseUrl}/share`;
   private http: HttpClient = inject(HttpClient);
 
-  shareNote(noteId: string, receiverEmail: string): Observable<ShareResponse> {
+  shareNote(noteId: number, receiverEmail: string): Observable<ShareResponse> {
     const params = new HttpParams().set('receiverEmail', receiverEmail);
 
     return this.http.post<ShareResponse>(`${this.baseUrl}/${noteId}`, null, { params: params });
   }
 
-  getById(id: string): Observable<ShareResponse> {
+  getById(id: number): Observable<ShareResponse> {
     return this.http.get<ShareResponse>(`${this.baseUrl}/${id}`);
   }
 

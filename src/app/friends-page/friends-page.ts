@@ -8,7 +8,7 @@ import { SnackbarService } from '../components/notification/snackbar-service';
 import { DialogData } from '../model/dialog-data';
 import { RequestResponse } from '../model/request/request-response';
 import { UserCardItem } from '../model/user-card-item';
-import { UserResponse } from '../model/user/user-response';
+import { UserInfo } from '../model/user/user-info';
 import { RequestService } from '../service/request/request-service';
 import { UserService } from '../service/user/user-service';
 
@@ -19,7 +19,7 @@ import { UserService } from '../service/user/user-service';
   styleUrl: './friends-page.css',
 })
 export class FriendsPage implements OnInit {
-  friends$!: Observable<UserResponse[]>;
+  friends$!: Observable<UserInfo[]>;
   sentRequests$!: Observable<RequestResponse[]>;
   receivedRequests$!: Observable<RequestResponse[]>;
 

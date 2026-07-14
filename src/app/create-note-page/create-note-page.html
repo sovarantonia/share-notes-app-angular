@@ -1,1 +1,5 @@
-<app-note-form [formTitle]="formTitle" (formSubmitted)="createNote($event)" />
+<app-note-form
+  [formTitle]="formTitle"
+  (formSubmitted)="createNote($event)"
+  [allTagOptions]="allTags()"
+/>

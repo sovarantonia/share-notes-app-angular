@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   EventEmitter,
+  input,
   Input,
   model,
   OnInit,
@@ -27,10 +28,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { NoteRequest } from '../model/note/note-request';
-import { NoteResponse } from '../model/note/note-response';
-import { ViewSelectValue } from '../model/view-select-value';
-import { TagService } from '../service/tag/tag-service';
+import { NoteRequest } from '../../model/note/note-request';
+import { NoteResponse } from '../../model/note/note-response';
+import { ViewSelectValue } from '../../model/view-select-value';
 @Component({
   selector: 'app-note-form',
   imports: [
@@ -54,6 +54,7 @@ export class NoteForm implements OnInit {
   @Input() formTitle!: string;
   @Input() isEditMode: boolean = false;
   @Input() note: NoteResponse | null = null;
+  allTagOptions = input<string[]>([]);
 
   @Output() formSubmitted = new EventEmitter<NoteRequest>();
 
@@ -71,7 +72,6 @@ export class NoteForm implements OnInit {
   ];
 
   tags = signal<string[]>([]);
-  allTagOptions = signal<string[]>([]);
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly currentTag = model('');
@@ -85,10 +85,7 @@ export class NoteForm implements OnInit {
 
   readonly today = new Date();
 
-  constructor(
-    private fb: FormBuilder,
-    private tagService: TagService
-  ) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.noteForm = this.fb.group({
@@ -109,12 +106,6 @@ export class NoteForm implements OnInit {
 
       this.tags.set(this.note.tags.map((t) => t.name));
     }
-
-    this.tagService.getTagsForUser().subscribe({
-      next: (tags) => {
-        this.allTagOptions.set(tags.map((t) => t.name));
-      },
-    });
   }
 
   addTag(event: MatChipInputEvent): void {

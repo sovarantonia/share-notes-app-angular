@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, input, Input, Output } from '@angular/core';
 import { MatAnchor } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChip } from '@angular/material/chips';
@@ -19,6 +19,7 @@ export class NotesCard {
   @Input() note!: NoteResponse;
   @Input() isViewMode = false;
   @Input() isReadonlyMode = false;
+  allTags = input<string[]>([]);
 
   @Output() noteUpdated = new EventEmitter<{ id: number; data: NoteRequest }>();
   @Output() noteDeleted = new EventEmitter<number>();
@@ -28,7 +29,7 @@ export class NotesCard {
 
   onViewClick(id: number, note: NoteResponse) {
     const dialogRef = this.dialog.open(ViewNoteDialog, {
-      data: { note: note, isReadonlyMode: this.isReadonlyMode },
+      data: { note: note, isReadonlyMode: this.isReadonlyMode, tags: this.allTags() },
     });
 
     dialogRef.afterClosed().subscribe((res: NoteRequest | undefined) => {

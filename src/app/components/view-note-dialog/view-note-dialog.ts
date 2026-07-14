@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
+import { MatChip } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { NoteRequest } from '../../model/note/note-request';
-import { NoteResponse } from '../../model/note/note-response';
-import { NoteForm } from '../../note-form/note-form';
+import { MatLabel } from '@angular/material/form-field';
 import { NoteDialogData } from '../../model/note-dialog-data';
-import { MatLabel } from "@angular/material/form-field";
-import { MatChip } from "@angular/material/chips";
+import { NoteRequest } from '../../model/note/note-request';
+import { NoteForm } from '../note-form/note-form';
 
 @Component({
   selector: 'app-view-note-dialog',

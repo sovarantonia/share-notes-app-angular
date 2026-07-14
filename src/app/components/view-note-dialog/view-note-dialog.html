@@ -1,7 +1,11 @@
 <h2 mat-dialog-title>View note</h2>
 <mat-dialog-content>
   @if (!data.isReadonlyMode) {
-    <app-note-form [note]="data.note" (formSubmitted)="onDialogSubmit($event)" />
+    <app-note-form
+      [note]="data.note"
+      (formSubmitted)="onDialogSubmit($event)"
+      [allTagOptions]="data.tags"
+    />
   } @else {
     <mat-label>{{ data.note.title }}</mat-label>
     <mat-chip>{{ data.note.date }}</mat-chip>

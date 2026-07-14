@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Dialog } from '../components/dialog/dialog';
@@ -12,6 +12,7 @@ import { NoteResponse } from '../model/note/note-response';
 import { UserInfo } from '../model/user/user-info';
 import { NoteService } from '../service/note/note-service';
 import { ShareService } from '../service/share/share-service';
+import { TagService } from '../service/tag/tag-service';
 import { UserService } from '../service/user/user-service';
 
 @Component({
@@ -26,15 +27,27 @@ export class NotesPage implements OnInit {
 
   friends!: UserInfo[];
 
+  allTags = signal<string[]>([]);
+
   constructor(
     private noteService: NoteService,
     private snackbarService: SnackbarService,
     private userService: UserService,
-    private shareService: ShareService
+    private shareService: ShareService,
+    private tagService: TagService
   ) {}
 
   ngOnInit(): void {
     this.allNotes$ = this.noteService.getAllByUser();
+    this.loadTags();
+  }
+
+  private loadTags(): void {
+    this.tagService.getTagsForUser().subscribe({
+      next: (tags) => {
+        this.allTags.set(tags.map((t) => t.name));
+      },
+    });
   }
 
   updateNote(event: { id: number; data: NoteRequest }) {
@@ -42,6 +55,7 @@ export class NotesPage implements OnInit {
       next: () => {
         this.snackbarService.open('Note was updated');
         this.allNotes$ = this.noteService.getAllByUser();
+        this.loadTags();
       },
       error: () => {
         this.snackbarService.open('Could not update the note');

@@ -20,7 +20,7 @@ import { UserService } from '../service/user/user-service';
 
 @Component({
   selector: 'app-notes-page',
-  imports: [NotesCard, AsyncPipe, MatIconButton, MatIcon, MatAnchor],
+  imports: [NotesCard, AsyncPipe, MatAnchor],
   templateUrl: './notes-page.html',
   styleUrl: './notes-page.css',
 })

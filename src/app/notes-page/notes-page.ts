@@ -1,8 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { MatAnchor, MatIconButton } from '@angular/material/button';
+import { MatAnchor } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIcon } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { Dialog } from '../components/dialog/dialog';
 import { DownloadNoteDialog } from '../components/download-note-dialog/download-note-dialog';

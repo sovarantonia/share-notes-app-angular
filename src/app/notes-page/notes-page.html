@@ -6,6 +6,17 @@
       (noteDeleted)="deleteNote($event)"
       (noteShared)="shareNote($event)"
       [allTags]="allTags()"
+      [(selectedNoteIds)]="selectedNoteIds"
     />
   }
+}
+
+@if (selectedNoteIds().length > 0) {
+  <div>
+    <span>{{ selectedNoteIds().length }} notes selected</span>
+
+    <button matButton (click)="downloadSelectedNotes()">
+      Download
+    </button>
+  </div>
 }

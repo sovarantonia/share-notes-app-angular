@@ -6,6 +6,11 @@
         {{ note.date | date: 'dd-MM-yyyy' }}
       </mat-chip>
     </mat-card-title>
+    <mat-checkbox
+      [checked]="selectedNoteIds().includes(note.id)"
+      (change)="onSelectionChange(note.id, $event.checked)"
+    >
+    </mat-checkbox>
   </mat-card-header>
 
   <mat-card-content>

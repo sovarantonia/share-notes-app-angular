@@ -1,8 +1,11 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIcon } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { Dialog } from '../components/dialog/dialog';
+import { DownloadNoteDialog } from '../components/download-note-dialog/download-note-dialog';
 import { NotesCard } from '../components/notes-card/notes-card';
 import { SnackbarService } from '../components/notification/snackbar-service';
 import { ShareDialog } from '../components/share-dialog/share-dialog';
@@ -17,7 +20,7 @@ import { UserService } from '../service/user/user-service';
 
 @Component({
   selector: 'app-notes-page',
-  imports: [NotesCard, AsyncPipe],
+  imports: [NotesCard, AsyncPipe, MatIconButton, MatIcon, MatAnchor],
   templateUrl: './notes-page.html',
   styleUrl: './notes-page.css',
 })
@@ -28,6 +31,8 @@ export class NotesPage implements OnInit {
   friends!: UserInfo[];
 
   allTags = signal<string[]>([]);
+
+  selectedNoteIds = signal<number[]>([]);
 
   constructor(
     private noteService: NoteService,
@@ -115,6 +120,54 @@ export class NotesPage implements OnInit {
           }
         });
       },
+    });
+  }
+
+  downloadSelectedNotes() {
+    const ids = this.selectedNoteIds();
+
+    if (ids.length === 0) {
+      return;
+    }
+
+    const dialogRef = this.dialog.open(DownloadNoteDialog);
+
+    dialogRef.afterClosed().subscribe((type) => {
+      if (!type) {
+        return;
+      }
+
+      this.noteService.downloadNotes(ids, type).subscribe({
+        next: (res) => {
+          const blob = res.body!;
+
+          const contentDisposition = res.headers.get('Content-Disposition');
+
+          let filename = 'download';
+
+          if (contentDisposition) {
+            const match = contentDisposition.match(/filename="?([^"]+)"?/);
+            if (match) {
+              filename = match[1];
+            }
+          }
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = filename;
+
+          document.body.appendChild(link);
+          link.click();
+
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+
+          this.selectedNoteIds.set([]);
+        },
+        error: () => {
+          this.snackbarService.open('Could not download the note(s)');
+        },
+      });
     });
   }
 }

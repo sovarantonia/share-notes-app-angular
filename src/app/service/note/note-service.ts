@@ -71,8 +71,8 @@ export class NoteService {
 
   getAverageGradesBetweenDates(startDate: Date, endDate: Date): Observable<GradeSummary[]> {
     const formattedStartDate = this.formatDate(startDate);
-    const formattedEndDate  = this.formatDate(endDate);
-    
+    const formattedEndDate = this.formatDate(endDate);
+
     let params = new HttpParams();
     params = params.set('startDate', formattedStartDate);
     params = params.set('endDate', formattedEndDate);
@@ -87,6 +87,10 @@ export class NoteService {
       params = params.append('ids', id);
     });
 
-    return this.http.get(`${this.baseUrl}/download`, {params: params, responseType: 'blob'});
+    return this.http.get(`${this.baseUrl}/download`, {
+      params: params,
+      responseType: 'blob',
+      observe: 'response',
+    });
   }
 }

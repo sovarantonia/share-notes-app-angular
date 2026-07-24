@@ -1,24 +1,46 @@
 <mat-tab-group>
   <mat-tab label="Friends">
-    <app-friends-card
-      [items$]="friendsItems$"
-      [mode]="'friends'"
-      (removeFriend)="deleteFriend($event)"
-    />
+    <app-search-bar (searchEvent)="searchFriends($event)" />
+
+    @if (friendItems$ | async; as friendItems) {
+      @for (item of friendItems; track item.id) {
+        <app-friends-card [item]="item" [mode]="'friends'" (removeFriend)="deleteFriend($event)" />
+      }
+    }
   </mat-tab>
   <mat-tab label="Requests">
-    <app-friends-card
-      [items$]="receivedRequestItems$"
-      [mode]="'received'"
-      (acceptRequest)="acceptRequest($event)"
-      (declineRequest)="declineRequest($event)"
-    />
+    @if (receivedRequestItems$ | async; as receivedRequestItems) {
+      @for (item of receivedRequestItems; track item.id) {
+        <app-friends-card
+          [item]="item"
+          [mode]="'received'"
+          (acceptRequest)="acceptRequest($event)"
+          (declineRequest)="declineRequest($event)"
+        />
+      }
+    }
   </mat-tab>
   <mat-tab label="Sent">
-    <app-friends-card
-      [items$]="sentRequestItems$"
-      [mode]="'sent'"
-      (cancelRequest)="deleteRequest($event)"
-    />
+    @if (sentRequestItems$ | async; as sentRequestItems) {
+      @for (item of sentRequestItems; track item.id) {
+        <app-friends-card [item]="item" [mode]="'sent'" (cancelRequest)="deleteRequest($event)" />
+      }
+    }
+  </mat-tab>
+  <mat-tab label="Find users">
+    <app-search-bar (searchEvent)="searchUsers($event)" />
+    @if (!hasSearched) {
+      <p>Start typing to find people.</p>
+    }
+
+    @if (userItems$ | async; as userItems) {
+      @if (hasSearched && userItems.length === 0) {
+        <p>No users found.</p>
+      }
+      @for (item of userItems; track item.id) {
+        <app-friends-card [item]="item" [mode]="'send-request'" (sendRequest)="sendRequest($event)" />
+      }
+    }
+    
   </mat-tab>
 </mat-tab-group>

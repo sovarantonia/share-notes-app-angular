@@ -1,3 +1,5 @@
+<app-note-search-bar [allTagOptions]="allTags()" (searchEvent)="searchNotes($event)" />
+
 @if (allNotes$ | async; as allNotes) {
   @for (note of allNotes; track note.id) {
     <app-notes-card
@@ -15,8 +17,6 @@
   <div>
     <span>{{ selectedNoteIds().length }} notes selected</span>
 
-    <button matButton (click)="downloadSelectedNotes()">
-      Download
-    </button>
+    <button matButton (click)="downloadSelectedNotes()">Download</button>
   </div>
 }

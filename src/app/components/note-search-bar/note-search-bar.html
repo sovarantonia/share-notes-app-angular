@@ -1,0 +1,64 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="title" placeholder="Search by title..." type="search" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="From" formControlName="from" />
+
+      <input matEndDate placeholder="To" formControlName="to" />
+    </mat-date-range-input>
+
+    <mat-hint>DD-MM-YYYY - DD-MM-YYYY</mat-hint>
+
+    <mat-datepicker-toggle matIconSuffix [for]="picker" />
+
+    <mat-date-range-picker #picker />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Grade</mat-label>
+    <mat-select formControlName="grade">
+      @for (grade of gradeOptions; track grade.value) {
+        <mat-option [value]="grade.value">{{ grade.viewValue }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Tags</mat-label>
+    <mat-chip-grid #chipGrid>
+      @for (tag of tags(); track tag) {
+        <mat-chip-row (removed)="removeTag(tag)"
+          >{{ tag }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <input
+      formControlName="tag"
+      name="currentTag"
+      placeholder="New tag..."
+      #tagInput
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="auto"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="addTag($event)"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selectedTag($event); tagInput.value = ''"
+    >
+      @for (tag of filteredTags(); track tag) {
+        <mat-option [value]="tag">{{ tag }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <button matSuffix mat-icon-button type="submit">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>

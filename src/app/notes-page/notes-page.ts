@@ -16,10 +16,12 @@ import { NoteService } from '../service/note/note-service';
 import { ShareService } from '../service/share/share-service';
 import { TagService } from '../service/tag/tag-service';
 import { UserService } from '../service/user/user-service';
+import { NoteSearchBar } from "../components/note-search-bar/note-search-bar";
+import { NoteSearchFilters } from '../model/note/note-search-filters';
 
 @Component({
   selector: 'app-notes-page',
-  imports: [NotesCard, AsyncPipe, MatAnchor],
+  imports: [NotesCard, AsyncPipe, MatAnchor, NoteSearchBar],
   templateUrl: './notes-page.html',
   styleUrl: './notes-page.css',
 })
@@ -168,5 +170,9 @@ export class NotesPage implements OnInit {
         },
       });
     });
+  }
+
+  searchNotes(noteFilters: NoteSearchFilters) {
+    this.allNotes$ = this.noteService.searchNotes(noteFilters);
   }
 }

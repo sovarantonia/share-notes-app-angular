@@ -47,11 +47,11 @@ export class NoteService {
     }
 
     if (noteSearchFilters.from) {
-      params = params.set('from', noteSearchFilters.from);
+      params = params.set('from', this.formatDate(noteSearchFilters.from));
     }
 
     if (noteSearchFilters.to) {
-      params = params.set('to', noteSearchFilters.to);
+      params = params.set('to', this.formatDate(noteSearchFilters.to));
     }
 
     return this.http.get<NoteResponse[]>(`${this.baseUrl}/search`, { params: params });
@@ -66,7 +66,7 @@ export class NoteService {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
 
-    return `${day}-${month}-${year}`;
+    return `${year}-${month}-${day}`;
   }
 
   getAverageGradesBetweenDates(startDate: Date, endDate: Date): Observable<GradeSummary[]> {

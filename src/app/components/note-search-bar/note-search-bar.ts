@@ -1,16 +1,21 @@
-import { Component, computed, input, model, OnInit, output, signal } from '@angular/core';
-import { MatFormField, MatSuffix, MatLabel, MatFormFieldModule } from "@angular/material/form-field";
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from "@angular/material/icon";
-import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatSelectModule } from "@angular/material/select";
-import { ViewSelectValue } from '../../model/view-select-value';
-import { MatChipInputEvent, MatChipsModule } from "@angular/material/chips";
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, computed, input, model, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  MatAutocomplete,
+  MatAutocompleteSelectedEvent,
+  MatAutocompleteTrigger,
+  MatOption,
+} from '@angular/material/autocomplete';
+import { MatIconButton } from '@angular/material/button';
+import { MatChipGrid, MatChipInput, MatChipInputEvent, MatChipRow } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormField, MatHint, MatLabel, MatSuffix } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { MatSelect } from '@angular/material/select';
 import { NoteSearchFilters } from '../../model/note/note-search-filters';
-import { MatInputModule } from '@angular/material/input';
+import { ViewSelectValue } from '../../model/view-select-value';
 
 @Component({
   selector: 'app-note-search-bar',
@@ -21,13 +26,19 @@ import { MatInputModule } from '@angular/material/input';
     MatIcon,
     MatLabel,
     MatDatepickerModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatChipsModule,
-    MatAutocompleteModule,
+    MatFormField,
+    MatSelect,
+    MatChipInput,
+    MatAutocomplete,
     ReactiveFormsModule,
-    MatInputModule
-],
+    MatInput,
+    MatChipGrid,
+    MatChipRow,
+    MatOption,
+    MatHint,
+    MatAutocomplete,
+    MatAutocompleteTrigger,
+  ],
   templateUrl: './note-search-bar.html',
   styleUrl: './note-search-bar.css',
 })

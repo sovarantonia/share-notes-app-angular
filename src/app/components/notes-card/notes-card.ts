@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChip } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatSuffix } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { NoteRequest } from '../../model/note/note-request';
 import { NoteResponse } from '../../model/note/note-response';
@@ -21,6 +21,7 @@ import { ViewNoteDialog } from '../view-note-dialog/view-note-dialog';
     DatePipe,
     MatIcon,
     MatCheckboxModule,
+    MatSuffix,
   ],
   templateUrl: './notes-card.html',
   styleUrl: './notes-card.css',

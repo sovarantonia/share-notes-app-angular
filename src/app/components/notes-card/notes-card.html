@@ -29,6 +29,7 @@
     <button matButton (click)="onViewClick(note.id, note)">View</button>
     @if (!isViewMode) {
       <button
+        matSuffix
         color="warn"
         mat-icon-button
         (click)="onDeleteClick(note.id)"
@@ -36,7 +37,7 @@
       >
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-icon-button (click)="onShareClick(note.id)" aria-label="Share note">
+      <button matSuffix mat-icon-button (click)="onShareClick(note.id)" aria-label="Share note">
         <mat-icon>share</mat-icon>
       </button>
     }

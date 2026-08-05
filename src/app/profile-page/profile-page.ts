@@ -6,8 +6,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { Dialog } from '../components/dialog/dialog';
 import { SnackbarService } from '../components/notification/snackbar-service';
@@ -15,10 +16,11 @@ import { DialogData } from '../model/dialog-data';
 import { UserName } from '../model/user/user-name';
 import { AuthService } from '../service/auth/auth-service';
 import { UserService } from '../service/user/user-service';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ReactiveFormsModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatFormField, MatLabel, MatButton, MatInput],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.css',
 })
@@ -78,7 +80,7 @@ export class ProfilePage implements OnInit {
       title: 'Delete account',
       content: 'This action can not be undone.',
       actionName: 'Delete',
-      dialogCloseActionName: 'Cancel'
+      dialogCloseActionName: 'Cancel',
     };
 
     const ref = this.dialog.open(Dialog, {
@@ -94,7 +96,7 @@ export class ProfilePage implements OnInit {
           },
           error: () => {
             this.snackbarService.open('Could not delete the account');
-          }
+          },
         });
       }
     });

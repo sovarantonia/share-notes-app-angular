@@ -6,13 +6,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { SnackbarService } from '../components/notification/snackbar-service';
 import { UserLoginRequest } from '../model/user/user-login-request';
 import { AuthService } from '../service/auth/auth-service';
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, MatFormField, MatLabel, MatInput, MatButton],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',
 })

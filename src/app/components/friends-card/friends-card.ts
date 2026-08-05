@@ -2,10 +2,11 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { UserCardItem } from '../../model/user-card-item';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-friends-card',
-  imports: [MatCardModule, DatePipe],
+  imports: [MatCardModule, DatePipe, MatButton],
   templateUrl: './friends-card.html',
   styleUrl: './friends-card.css',
 })

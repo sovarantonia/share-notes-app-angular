@@ -1,33 +1,40 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <label for="email">Email: </label>
-    <input id="email" type="email" formControlName="email" />
-    
-    @if(this.loginForm.get('email')?.invalid && (this.loginForm.get('email')?.touched || this.loginForm.get('email')?.dirty)) {
-        @if (this.loginForm.hasError('required')) {
-            <div>
-                Email is required
-            </div>
-        } 
-        @else if (this.loginForm.hasError('email')) {
-            <div>
-                Invalid email format
-            </div>
-        }
+  <div class="formField">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput id="email" type="email" formControlName="email" />
+    </mat-form-field>
+    @if (
+      this.loginForm.get('email')?.invalid &&
+      (this.loginForm.get('email')?.touched || this.loginForm.get('email')?.dirty)
+    ) {
+      @if (this.loginForm.hasError('required')) {
+        <div>Email is required</div>
+      } @else if (this.loginForm.hasError('email')) {
+        <div>Invalid email format</div>
+      }
     }
+  </div>
 
-    <label for="password">Password: </label>
-    <input id="password" type="password" formControlName="password" />
+  <div class="formField">
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput id="password" type="password" formControlName="password" />
+    </mat-form-field>
 
-    @if(this.loginForm.get('password')?.invalid && (this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty)) {
-        @if (this.loginForm.hasError('required')) {
-            <div>
-                Password is required
-            </div>
-        } 
+    @if (
+      this.loginForm.get('password')?.invalid &&
+      (this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty)
+    ) {
+      @if (this.loginForm.hasError('required')) {
+        <div>Password is required</div>
+      }
     }
+  </div>
 
-    <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+  <div class="formActions">
+    <button matButton type="submit" [disabled]="loginForm.invalid">Log in</button>
 
     <a routerLink="/register">Don't have an account? Register now </a>
+  </div>
 </form>
-

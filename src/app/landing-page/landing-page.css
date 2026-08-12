@@ -1,0 +1,44 @@
+.home-page {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+}
+
+.page-content {
+  width: 100%;
+  padding: 2rem;
+  max-width: 1000px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  text-align: center;
+}
+
+.hero,
+.feature {
+  border: 1px solid #181717;
+  border-radius: 15px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.subtitle {
+  padding-bottom: 2rem;
+}
+
+.feature {
+  max-width: 700px;
+  align-self: center;
+  width: 100%;
+}
+
+.hero:hover,
+.feature:hover {
+  transform: translateY(-10px);
+}

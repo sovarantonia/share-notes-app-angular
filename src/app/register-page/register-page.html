@@ -1,5 +1,8 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="formField">
+<div class="auth-page">
+  <header class="form-header">
+    <h1>Create an account</h1>
+  </header>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="app-form register-form">
     <mat-form-field>
       <mat-label>First name</mat-label>
       <input matInput id="firstName" formControlName="firstName" />
@@ -8,11 +11,9 @@
       this.registerForm.get('firstName')?.invalid &&
       (this.registerForm.get('firstName')?.touched || this.registerForm.get('firstName')?.dirty)
     ) {
-      <div>First name is required</div>
+      <mat-error>First name is required</mat-error>
     }
-  </div>
 
-  <div class="formField">
     <mat-form-field>
       <mat-label>Last name</mat-label>
       <input matInput id="lastName" formControlName="lastName" />
@@ -21,11 +22,9 @@
       this.registerForm.get('lastName')?.invalid &&
       (this.registerForm.get('lastName')?.touched || this.registerForm.get('lastName')?.dirty)
     ) {
-      <div>Last name is required</div>
+      <mat-error>Last name is required</mat-error>
     }
-  </div>
 
-  <div class="formField">
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput id="email" formControlName="email" />
@@ -35,16 +34,14 @@
       (this.registerForm.get('email')?.touched || this.registerForm.get('email')?.dirty)
     ) {
       @if (this.registerForm.hasError('required')) {
-        <div>Email is required</div>
+        <mat-error>Email is required</mat-error>
       } @else if (this.registerForm.hasError('email')) {
-        <div>Invalid email format</div>
+        <mat-error>Invalid email format</mat-error>
       } @else if (this.registerForm.hasError('emailExists')) {
-        <div>This email is already taken</div>
+        <mat-error>This email is already taken</mat-error>
       }
     }
-  </div>
 
-  <div class="formField">
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input matInput id="password" formControlName="password" type="password" />
@@ -54,14 +51,12 @@
       (this.registerForm.get('password')?.touched || this.registerForm.get('password')?.dirty)
     ) {
       @if (this.registerForm.hasError('required')) {
-        <div>Password is required</div>
+        <mat-error>Password is required</mat-error>
       } @else if (this.registerForm.hasError('minlength')) {
-        <div>Password should have minimum 5 characters</div>
+        <mat-error>Password should have minimum 5 characters</mat-error>
       }
     }
-  </div>
 
-  <div class="formField">
     <mat-form-field>
       <mat-label>Confirm password</mat-label>
       <input matInput id="confirmPassword" formControlName="confirmPassword" type="password" />
@@ -72,16 +67,16 @@
         this.registerForm.get('confirmPassword')?.dirty)
     ) {
       @if (this.registerForm.hasError('required')) {
-        <div>Password is required</div>
+        <mat-error>Password is required</mat-error>
       } @else if (registerForm.hasError('passwordsNotMatching')) {
-        <div>Passwords do not match</div>
+        <mat-error>Passwords do not match</mat-error>
       }
     }
-  </div>
 
-  <div class="formActions">
-    <button matButton type="submit" [disabled]="registerForm.invalid">Register</button>
+    <section class="form-actions">
+      <button matButton type="submit" [disabled]="registerForm.invalid">Register</button>
 
-    <a routerLink="/login">Already have an account? Log in now </a>
-  </div>
-</form>
+      <a routerLink="/login">Already have an account? Log in now </a>
+    </section>
+  </form>
+</div>

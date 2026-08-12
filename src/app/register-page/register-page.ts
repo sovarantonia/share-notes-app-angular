@@ -8,18 +8,18 @@ import {
 } from '@angular/forms';
 
 import { MatButton } from '@angular/material/button';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { SnackbarService } from '../components/notification/snackbar-service';
 import { UserRequest } from '../model/user/user-request';
 import { AuthService } from '../service/auth/auth-service';
 import { EmailExistsValidator } from '../service/validator/email-exists-validator';
 import { confirmPasswordValidator } from '../service/validator/password-validator';
-import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-register-page',
-  imports: [ReactiveFormsModule, RouterLink, MatLabel, MatFormField, MatButton, MatInput],
+  imports: [ReactiveFormsModule, RouterLink, MatLabel, MatFormField, MatButton, MatInput, MatError],
   templateUrl: './register-page.html',
   styleUrl: './register-page.css',
   standalone: true,

@@ -1,5 +1,9 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="formField">
+<div class="auth-page">
+  <header class="form-header">
+    <h1>Login</h1>
+  </header>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="app-form login-form">
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput id="email" type="email" formControlName="email" />
@@ -9,14 +13,12 @@
       (this.loginForm.get('email')?.touched || this.loginForm.get('email')?.dirty)
     ) {
       @if (this.loginForm.hasError('required')) {
-        <div>Email is required</div>
+        <mat-error>Email is required</mat-error>
       } @else if (this.loginForm.hasError('email')) {
-        <div>Invalid email format</div>
+        <mat-error>Invalid email format</mat-error>
       }
     }
-  </div>
 
-  <div class="formField">
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input matInput id="password" type="password" formControlName="password" />
@@ -27,14 +29,14 @@
       (this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty)
     ) {
       @if (this.loginForm.hasError('required')) {
-        <div>Password is required</div>
+        <mat-error>Password is required</mat-error>
       }
     }
-  </div>
 
-  <div class="formActions">
-    <button matButton type="submit" [disabled]="loginForm.invalid">Log in</button>
+    <div class="form-actions">
+      <button matButton type="submit" [disabled]="loginForm.invalid">Log in</button>
 
-    <a routerLink="/register">Don't have an account? Register now </a>
-  </div>
-</form>
+      <a routerLink="/register">Don't have an account? Register now </a>
+    </div>
+  </form>
+</div>

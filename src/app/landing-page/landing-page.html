@@ -1,9 +1,50 @@
-<!-- <p>landing-page works!</p> -->
-<!-- <nav>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
-</nav> -->
+<div class="home-page">
+  <div class="sidebar">
+    <app-sidebar [navItems]="landingPageItems">
+      <router-outlet />
+    </app-sidebar>
+  </div>
 
-<app-sidebar [navItems]="landingPageItems">
-  <router-outlet />
-</app-sidebar>
+  <main class="page-content">
+    <section class="hero">
+      <h1>Join a Motivated Community</h1>
+      <p class="subtitle">
+        Connect with others who are on a journey to improve themselves, just like you.
+      </p>
+      <p class="subtitle">The perfect place to keep track of your thoughts, ideas and progress.</p>
+      <div class="hero-text">
+        <p>
+          Whether you're working on self-development or motivation, we make it easier to create,
+          organize and share your notes.
+        </p>
+        <p>
+          Track your progress over time and access your notes anytime, anywhere. Stay motivated and
+          focused on your journey.
+        </p>
+      </div>
+    </section>
+
+    <section class="feature">
+      <h1>Empower Your Personal Growth</h1>
+      <p>
+        Create notes that inspire your growth. Document your journey, track milestones and stay
+        motivated to improve every day.
+      </p>
+    </section>
+
+    <section class="feature">
+      <h1>Keep Your Motivation on Track</h1>
+      <p>
+        Visualize your progress and stay focused on your goals with our progress tracking features.
+      </p>
+    </section>
+
+    <section class="feature">
+      <h1>Your Notes, Anytime, Anywhere</h1>
+      <p>
+        Access your personal notes across devices and stay on track with your self-development
+        journey.
+      </p>
+    </section>
+  </main>
+</div>

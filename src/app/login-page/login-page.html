@@ -12,9 +12,9 @@
       this.loginForm.get('email')?.invalid &&
       (this.loginForm.get('email')?.touched || this.loginForm.get('email')?.dirty)
     ) {
-      @if (this.loginForm.hasError('required')) {
+      @if (this.loginForm.get('email')?.hasError('required')) {
         <mat-error>Email is required</mat-error>
-      } @else if (this.loginForm.hasError('email')) {
+      } @else if (this.loginForm.get('email')?.hasError('email')) {
         <mat-error>Invalid email format</mat-error>
       }
     }
@@ -28,7 +28,7 @@
       this.loginForm.get('password')?.invalid &&
       (this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty)
     ) {
-      @if (this.loginForm.hasError('required')) {
+      @if (this.loginForm.get('password')?.hasError('required')) {
         <mat-error>Password is required</mat-error>
       }
     }

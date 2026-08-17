@@ -7,31 +7,30 @@
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput id="email" type="email" formControlName="email" />
-    </mat-form-field>
-    @if (
-      this.loginForm.get('email')?.invalid &&
-      (this.loginForm.get('email')?.touched || this.loginForm.get('email')?.dirty)
-    ) {
-      @if (this.loginForm.get('email')?.hasError('required')) {
-        <mat-error>Email is required</mat-error>
-      } @else if (this.loginForm.get('email')?.hasError('email')) {
-        <mat-error>Invalid email format</mat-error>
+      @if (
+        this.loginForm.get('email')?.invalid &&
+        (this.loginForm.get('email')?.touched || this.loginForm.get('email')?.dirty)
+      ) {
+        @if (this.loginForm.get('email')?.hasError('required')) {
+          <mat-error>Email is required</mat-error>
+        } @else if (this.loginForm.get('email')?.hasError('email')) {
+          <mat-error>Invalid email format</mat-error>
+        }
       }
-    }
+    </mat-form-field>
 
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input matInput id="password" type="password" formControlName="password" />
-    </mat-form-field>
-
-    @if (
-      this.loginForm.get('password')?.invalid &&
-      (this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty)
-    ) {
-      @if (this.loginForm.get('password')?.hasError('required')) {
-        <mat-error>Password is required</mat-error>
+      @if (
+        this.loginForm.get('password')?.invalid &&
+        (this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty)
+      ) {
+        @if (this.loginForm.get('password')?.hasError('required')) {
+          <mat-error>Password is required</mat-error>
+        }
       }
-    }
+    </mat-form-field>
 
     <div class="form-actions">
       <button matButton type="submit" [disabled]="loginForm.invalid">Log in</button>

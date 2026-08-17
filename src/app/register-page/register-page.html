@@ -6,72 +6,72 @@
     <mat-form-field>
       <mat-label>First name</mat-label>
       <input matInput id="firstName" formControlName="firstName" />
+      @if (
+        this.registerForm.get('firstName')?.invalid &&
+        (this.registerForm.get('firstName')?.touched || this.registerForm.get('firstName')?.dirty)
+      ) {
+        <mat-error>First name is required</mat-error>
+      }
     </mat-form-field>
-    @if (
-      this.registerForm.get('firstName')?.invalid &&
-      (this.registerForm.get('firstName')?.touched || this.registerForm.get('firstName')?.dirty)
-    ) {
-      <mat-error>First name is required</mat-error>
-    }
 
     <mat-form-field>
       <mat-label>Last name</mat-label>
       <input matInput id="lastName" formControlName="lastName" />
+      @if (
+        this.registerForm.get('lastName')?.invalid &&
+        (this.registerForm.get('lastName')?.touched || this.registerForm.get('lastName')?.dirty)
+      ) {
+        <mat-error>Last name is required</mat-error>
+      }
     </mat-form-field>
-    @if (
-      this.registerForm.get('lastName')?.invalid &&
-      (this.registerForm.get('lastName')?.touched || this.registerForm.get('lastName')?.dirty)
-    ) {
-      <mat-error>Last name is required</mat-error>
-    }
 
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput id="email" formControlName="email" />
-    </mat-form-field>
-    @if (
-      this.registerForm.get('email')?.invalid &&
-      (this.registerForm.get('email')?.touched || this.registerForm.get('email')?.dirty)
-    ) {
-      @if (this.registerForm.get('email')?.hasError('required')) {
-        <mat-error>Email is required</mat-error>
-      } @else if (this.registerForm.get('email')?.hasError('email')) {
-        <mat-error>Invalid email format</mat-error>
-      } @else if (this.registerForm.get('email')?.hasError('emailExists')) {
-        <mat-error>This email is already taken</mat-error>
+      @if (
+        this.registerForm.get('email')?.invalid &&
+        (this.registerForm.get('email')?.touched || this.registerForm.get('email')?.dirty)
+      ) {
+        @if (this.registerForm.get('email')?.hasError('required')) {
+          <mat-error>Email is required</mat-error>
+        } @else if (this.registerForm.get('email')?.hasError('email')) {
+          <mat-error>Invalid email format</mat-error>
+        } @else if (this.registerForm.get('email')?.hasError('emailExists')) {
+          <mat-error>This email is already taken</mat-error>
+        }
       }
-    }
+    </mat-form-field>
 
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input matInput id="password" formControlName="password" type="password" />
-    </mat-form-field>
-    @if (
-      this.registerForm.get('password')?.invalid &&
-      (this.registerForm.get('password')?.touched || this.registerForm.get('password')?.dirty)
-    ) {
-      @if (this.registerForm.get('password')?.hasError('required')) {
-        <mat-error>Password is required</mat-error>
-      } @else if (this.registerForm.get('password')?.hasError('minlength')) {
-        <mat-error>Password should have minimum 5 characters</mat-error>
+      @if (
+        this.registerForm.get('password')?.invalid &&
+        (this.registerForm.get('password')?.touched || this.registerForm.get('password')?.dirty)
+      ) {
+        @if (this.registerForm.get('password')?.hasError('required')) {
+          <mat-error>Password is required</mat-error>
+        } @else if (this.registerForm.get('password')?.hasError('minlength')) {
+          <mat-error>Password should have minimum 5 characters</mat-error>
+        }
       }
-    }
+    </mat-form-field>
 
     <mat-form-field>
       <mat-label>Confirm password</mat-label>
       <input matInput id="confirmPassword" formControlName="confirmPassword" type="password" />
-    </mat-form-field>
-    @if (
-      this.registerForm.get('confirmPassword')?.invalid &&
-      (this.registerForm.get('confirmPassword')?.touched ||
-        this.registerForm.get('confirmPassword')?.dirty)
-    ) {
-      @if (this.registerForm.get('confirmPassword')?.hasError('required')) {
-        <mat-error>Password is required</mat-error>
-      } @else if (registerForm.hasError('passwordsNotMatching')) {
-        <mat-error>Passwords do not match</mat-error>
+      @if (
+        this.registerForm.get('confirmPassword')?.invalid &&
+        (this.registerForm.get('confirmPassword')?.touched ||
+          this.registerForm.get('confirmPassword')?.dirty)
+      ) {
+        @if (this.registerForm.get('confirmPassword')?.hasError('required')) {
+          <mat-error>Password is required</mat-error>
+        } @else if (registerForm.hasError('passwordsNotMatching')) {
+          <mat-error>Passwords do not match</mat-error>
+        }
       }
-    }
+    </mat-form-field>
 
     <section class="form-actions">
       <button matButton type="submit" [disabled]="registerForm.invalid">Register</button>

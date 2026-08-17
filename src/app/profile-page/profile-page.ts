@@ -8,7 +8,8 @@ import {
 } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { Dialog } from '../components/dialog/dialog';
 import { SnackbarService } from '../components/notification/snackbar-service';
@@ -16,11 +17,10 @@ import { DialogData } from '../model/dialog-data';
 import { UserName } from '../model/user/user-name';
 import { AuthService } from '../service/auth/auth-service';
 import { UserService } from '../service/user/user-service';
-import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ReactiveFormsModule, MatFormField, MatLabel, MatButton, MatInput],
+  imports: [ReactiveFormsModule, MatFormField, MatLabel, MatButton, MatInput, MatError],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.css',
 })

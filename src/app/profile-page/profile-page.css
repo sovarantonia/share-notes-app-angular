@@ -1,0 +1,16 @@
+.profile-form {
+  width: 100%;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.page-header,
+.page-options {
+  text-align: center;
+}

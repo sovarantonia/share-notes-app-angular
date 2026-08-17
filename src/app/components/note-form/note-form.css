@@ -1,0 +1,15 @@
+.note-form {
+  width: 100%;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-title {
+  text-align: center;
+}

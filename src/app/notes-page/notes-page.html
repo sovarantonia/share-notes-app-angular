@@ -1,22 +1,29 @@
-<app-note-search-bar [allTagOptions]="allTags()" (searchEvent)="searchNotes($event)" />
+<div class="notes-page">
+  <header class="page-header">
+    <h1>My notes</h1>
+  </header>
+  <app-note-search-bar [allTagOptions]="allTags()" (searchEvent)="searchNotes($event)" />
 
-@if (allNotes$ | async; as allNotes) {
-  @for (note of allNotes; track note.id) {
-    <app-notes-card
-      [note]="note"
-      (noteUpdated)="updateNote($event)"
-      (noteDeleted)="deleteNote($event)"
-      (noteShared)="shareNote($event)"
-      [allTags]="allTags()"
-      [(selectedNoteIds)]="selectedNoteIds"
-    />
+  @if (allNotes$ | async; as allNotes) {
+    <div class="notes-grid">
+      @for (note of allNotes; track note.id) {
+        <app-notes-card
+          [note]="note"
+          (noteUpdated)="updateNote($event)"
+          (noteDeleted)="deleteNote($event)"
+          (noteShared)="shareNote($event)"
+          [allTags]="allTags()"
+          [(selectedNoteIds)]="selectedNoteIds"
+        />
+      }
+    </div>
   }
-}
 
-@if (selectedNoteIds().length > 0) {
-  <div>
-    <span>{{ selectedNoteIds().length }} notes selected</span>
+  @if (selectedNoteIds().length > 0) {
+    <div class="download-popup">
+      <span>{{ selectedNoteIds().length }} notes selected</span>
 
-    <button matButton (click)="downloadSelectedNotes()">Download</button>
-  </div>
-}
+      <button matButton (click)="downloadSelectedNotes()">Download</button>
+    </div>
+  }
+</div>

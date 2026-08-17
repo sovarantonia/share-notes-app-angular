@@ -1,0 +1,17 @@
+.notes-page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.notes-grid app-notes-card {
+  transition: transform 0.3s ease;
+}
+.notes-grid app-notes-card:hover {
+  transform: translateY(-8px);
+}

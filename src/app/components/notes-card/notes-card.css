@@ -1,0 +1,60 @@
+.note-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.secondary-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.grade-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tags mat-chip,
+.grade-section mat-chip {
+  max-width: 150px;
+}
+
+.card-text p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+

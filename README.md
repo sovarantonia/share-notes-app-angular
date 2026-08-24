@@ -1,9 +1,23 @@
 
 # Share Notes App - Angular Frontend
 
-Angular frontend for the Share Notes App.
+This repository contains an updated frontend version of the **Share Notes** application, built with **Angular** and **Angular Material**.
 
-Backend repository: https://github.com/sovarantonia/share-notes-app
+Share Notes App is a full-stack web application that allows users to create, manage, filter, share and download notes. This frontend communicates with the existing **Java Spring Boot REST API** used by the original application.
+
+The original version of Share Notes App, including the Spring Boot backend and React frontend is available here:
+
+ > Backend repository: [Share Notes App](https://github.com/sovarantonia/share-notes-app)
+
+
+## Technologies
+
+- Angular
+- TypeScript
+- Angular Material
+- RxJS
+- HTML
+- CSS
 
 
 # Application

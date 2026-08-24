@@ -1,3 +1,11 @@
+
+# Share Notes - Angular Frontend
+
+Angular frontend for the Share Notes App.
+
+Backend repository: https://github.com/sovarantonia/share-notes-app
+
+
 # Application
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.

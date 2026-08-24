@@ -1,5 +1,5 @@
 
-# Share Notes - Angular Frontend
+# Share Notes App - Angular Frontend
 
 Angular frontend for the Share Notes App.
 

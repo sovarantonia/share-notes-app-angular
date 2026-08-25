@@ -1,61 +1,73 @@
 <mat-tab-group>
   <mat-tab label="Friends">
-    <app-search-bar (searchEvent)="searchFriends($event)" />
+    <div class="tab">
+      <app-search-bar (searchEvent)="searchFriends($event)" />
 
-    @if (friendItems$ | async; as friendItems) {
-      <div class="friends-card-grid">
-        @for (item of friendItems; track item.id) {
-          <app-friends-card
-            [item]="item"
-            [mode]="'friends'"
-            (removeFriend)="deleteFriend($event)"
-          />
-        }
-      </div>
-    }
+      @if (friendItems$ | async; as friendItems) {
+        <div class="friends-card-grid">
+          @for (item of friendItems; track item.id) {
+            <app-friends-card
+              [item]="item"
+              [mode]="'friends'"
+              (removeFriend)="deleteFriend($event)"
+            />
+          }
+        </div>
+      }
+    </div>
   </mat-tab>
   <mat-tab label="Requests">
-    @if (receivedRequestItems$ | async; as receivedRequestItems) {
-      <div class="friends-card-grid">
-        @for (item of receivedRequestItems; track item.id) {
-          <app-friends-card
-            [item]="item"
-            [mode]="'received'"
-            (acceptRequest)="acceptRequest($event)"
-            (declineRequest)="declineRequest($event)"
-          />
-        }
-      </div>
-    }
+    <div class="tab">
+      @if (receivedRequestItems$ | async; as receivedRequestItems) {
+        <div class="friends-card-grid">
+          @for (item of receivedRequestItems; track item.id) {
+            <app-friends-card
+              [item]="item"
+              [mode]="'received'"
+              (acceptRequest)="acceptRequest($event)"
+              (declineRequest)="declineRequest($event)"
+            />
+          }
+        </div>
+      }
+    </div>
   </mat-tab>
   <mat-tab label="Sent">
-    @if (sentRequestItems$ | async; as sentRequestItems) {
-      <div class="friends-card-grid">
-        @for (item of sentRequestItems; track item.id) {
-          <app-friends-card [item]="item" [mode]="'sent'" (cancelRequest)="deleteRequest($event)" />
-        }
-      </div>
-    }
+    <div class="tab">
+      @if (sentRequestItems$ | async; as sentRequestItems) {
+        <div class="friends-card-grid">
+          @for (item of sentRequestItems; track item.id) {
+            <app-friends-card
+              [item]="item"
+              [mode]="'sent'"
+              (cancelRequest)="deleteRequest($event)"
+            />
+          }
+        </div>
+      }
+    </div>
   </mat-tab>
   <mat-tab label="Find users">
-    <app-search-bar (searchEvent)="searchUsers($event)" />
-    @if (!hasSearched) {
-      <p>Start typing to find people.</p>
-    }
-
-    @if (userItems$ | async; as userItems) {
-      @if (hasSearched && userItems.length === 0) {
-        <p>No users found.</p>
+    <div class="tab">
+      <app-search-bar (searchEvent)="searchUsers($event)" />
+      @if (!hasSearched) {
+        <p>Start typing to find people.</p>
       }
-      <div class="friends-card-grid">
-        @for (item of userItems; track item.id) {
-          <app-friends-card
-            [item]="item"
-            [mode]="'send-request'"
-            (sendRequest)="sendRequest($event)"
-          />
+
+      @if (userItems$ | async; as userItems) {
+        @if (hasSearched && userItems.length === 0) {
+          <p>No users found.</p>
         }
-      </div>
-    }
+        <div class="friends-card-grid">
+          @for (item of userItems; track item.id) {
+            <app-friends-card
+              [item]="item"
+              [mode]="'send-request'"
+              (sendRequest)="sendRequest($event)"
+            />
+          }
+        </div>
+      }
+    </div>
   </mat-tab>
 </mat-tab-group>

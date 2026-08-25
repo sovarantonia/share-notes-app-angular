@@ -74,3 +74,10 @@ body {
   max-width: 500px;
   margin-inline: auto;
 }
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+}

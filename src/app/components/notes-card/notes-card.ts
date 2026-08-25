@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { Component, EventEmitter, inject, input, Input, model, Output } from '@angular/core';
 import { MatAnchor } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -22,6 +22,7 @@ import { ViewNoteDialog } from '../view-note-dialog/view-note-dialog';
     MatIcon,
     MatCheckboxModule,
     MatSuffix,
+    NgTemplateOutlet,
   ],
   templateUrl: './notes-card.html',
   styleUrl: './notes-card.css',
@@ -30,6 +31,7 @@ export class NotesCard {
   @Input() note!: NoteResponse;
   @Input() isViewMode = false;
   @Input() isReadonlyMode = false;
+  @Input() embedded = false;
 
   @Output() noteUpdated = new EventEmitter<{ id: number; data: NoteRequest }>();
   @Output() noteDeleted = new EventEmitter<number>();

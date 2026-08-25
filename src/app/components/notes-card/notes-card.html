@@ -1,11 +1,11 @@
-<mat-card class="note-card">
+<ng-template #noteContent>
   <mat-card-header class="card-header">
-      <mat-card-title>
-        {{ note.title }}
-        <mat-chip>
-          {{ note.date | date: 'dd-MM-yyyy' }}
-        </mat-chip>
-      </mat-card-title>
+    <mat-card-title>
+      {{ note.title }}
+      <mat-chip>
+        {{ note.date | date: 'dd-MM-yyyy' }}
+      </mat-chip>
+    </mat-card-title>
 
     @if (!isViewMode) {
       <mat-checkbox
@@ -27,8 +27,8 @@
     </div>
 
     <div class="grade-section">
-      <mat-label>Grade: </mat-label>
-        <mat-chip> {{ note.grade }} </mat-chip>
+      <span>Grade: </span>
+      <mat-chip> {{ note.grade }} </mat-chip>
     </div>
   </mat-card-content>
 
@@ -51,4 +51,12 @@
       </div>
     }
   </mat-card-actions>
-</mat-card>
+</ng-template>
+
+@if (embedded) {
+  <ng-container *ngTemplateOutlet="noteContent" />
+} @else {
+  <mat-card class="note-card">
+    <ng-container *ngTemplateOutlet="noteContent" />
+  </mat-card>
+}

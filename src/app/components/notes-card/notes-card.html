@@ -1,13 +1,11 @@
 <mat-card class="note-card">
   <mat-card-header class="card-header">
-    <div class="card-title">
       <mat-card-title>
         {{ note.title }}
         <mat-chip>
           {{ note.date | date: 'dd-MM-yyyy' }}
         </mat-chip>
       </mat-card-title>
-    </div>
 
     @if (!isViewMode) {
       <mat-checkbox

@@ -3,28 +3,38 @@
     <app-search-bar (searchEvent)="searchFriends($event)" />
 
     @if (friendItems$ | async; as friendItems) {
-      @for (item of friendItems; track item.id) {
-        <app-friends-card [item]="item" [mode]="'friends'" (removeFriend)="deleteFriend($event)" />
-      }
+      <div class="friends-card-grid">
+        @for (item of friendItems; track item.id) {
+          <app-friends-card
+            [item]="item"
+            [mode]="'friends'"
+            (removeFriend)="deleteFriend($event)"
+          />
+        }
+      </div>
     }
   </mat-tab>
   <mat-tab label="Requests">
     @if (receivedRequestItems$ | async; as receivedRequestItems) {
-      @for (item of receivedRequestItems; track item.id) {
-        <app-friends-card
-          [item]="item"
-          [mode]="'received'"
-          (acceptRequest)="acceptRequest($event)"
-          (declineRequest)="declineRequest($event)"
-        />
-      }
+      <div class="friends-card-grid">
+        @for (item of receivedRequestItems; track item.id) {
+          <app-friends-card
+            [item]="item"
+            [mode]="'received'"
+            (acceptRequest)="acceptRequest($event)"
+            (declineRequest)="declineRequest($event)"
+          />
+        }
+      </div>
     }
   </mat-tab>
   <mat-tab label="Sent">
     @if (sentRequestItems$ | async; as sentRequestItems) {
-      @for (item of sentRequestItems; track item.id) {
-        <app-friends-card [item]="item" [mode]="'sent'" (cancelRequest)="deleteRequest($event)" />
-      }
+      <div class="friends-card-grid">
+        @for (item of sentRequestItems; track item.id) {
+          <app-friends-card [item]="item" [mode]="'sent'" (cancelRequest)="deleteRequest($event)" />
+        }
+      </div>
     }
   </mat-tab>
   <mat-tab label="Find users">
@@ -37,10 +47,15 @@
       @if (hasSearched && userItems.length === 0) {
         <p>No users found.</p>
       }
-      @for (item of userItems; track item.id) {
-        <app-friends-card [item]="item" [mode]="'send-request'" (sendRequest)="sendRequest($event)" />
-      }
+      <div class="friends-card-grid">
+        @for (item of userItems; track item.id) {
+          <app-friends-card
+            [item]="item"
+            [mode]="'send-request'"
+            (sendRequest)="sendRequest($event)"
+          />
+        }
+      </div>
     }
-    
   </mat-tab>
 </mat-tab-group>

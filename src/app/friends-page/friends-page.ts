@@ -9,9 +9,7 @@ import { SnackbarService } from '../components/notification/snackbar-service';
 import { SearchBar } from '../components/search-bar/search-bar';
 import { DialogData } from '../model/dialog-data';
 import { RequestRequest } from '../model/request/request-request';
-import { RequestResponse } from '../model/request/request-response';
 import { UserCardItem } from '../model/user-card-item';
-import { UserInfo } from '../model/user/user-info';
 import { RequestService } from '../service/request/request-service';
 import { UserService } from '../service/user/user-service';
 
@@ -22,11 +20,6 @@ import { UserService } from '../service/user/user-service';
   styleUrl: './friends-page.css',
 })
 export class FriendsPage implements OnInit {
-  friends$!: Observable<UserInfo[]>;
-  sentRequests$!: Observable<RequestResponse[]>;
-  receivedRequests$!: Observable<RequestResponse[]>;
-  users$!: Observable<UserInfo[]>;
-
   hasSearched = false;
 
   friendItems$!: Observable<UserCardItem[]>;
@@ -49,8 +42,7 @@ export class FriendsPage implements OnInit {
   }
 
   private getSentRequests() {
-    this.sentRequests$ = this.requestService.getSentRequests();
-    this.sentRequestItems$ = this.sentRequests$.pipe(
+    this.sentRequestItems$ = this.requestService.getSentRequests().pipe(
       map((requests) =>
         requests.map((r) => ({
           id: r.id,
@@ -62,8 +54,7 @@ export class FriendsPage implements OnInit {
   }
 
   private getReceivedRequests() {
-    this.receivedRequests$ = this.requestService.getReceivedRequests();
-    this.receivedRequestItems$ = this.receivedRequests$.pipe(
+    this.receivedRequestItems$ = this.requestService.getReceivedRequests().pipe(
       map((requests) =>
         requests.map((r) => ({
           id: r.id,
@@ -74,8 +65,7 @@ export class FriendsPage implements OnInit {
   }
 
   private getFriends() {
-    this.friends$ = this.userService.getFriends();
-    this.friendItems$ = this.friends$.pipe(
+    this.friendItems$ = this.userService.getFriends().pipe(
       map((friends) =>
         friends.map((f) => ({
           id: f.id,
@@ -88,26 +78,32 @@ export class FriendsPage implements OnInit {
   searchUsers(searchValue: string) {
     this.hasSearched = true;
 
-    if (searchValue.length < 2) {
+    const value = searchValue.trim();
+
+    if (value.length < 2) {
       this.hasSearched = false;
-      this.users$ = of([]);
+      this.userItems$ = of([]);
       return;
     }
 
-    this.users$ = this.userService.searchUserNonFriends(searchValue);
-    this.userItems$ = this.users$.pipe(
+    this.userItems$ = this.userService.searchUserNonFriends(value).pipe(
       map((users) =>
-        users.map((u) => ({
-          id: u.id,
-          user: u,
+        users.map((user) => ({
+          id: user.id,
+          user,
         }))
       )
     );
   }
 
   searchFriends(searchValue: string) {
-    this.friends$ = this.userService.searchUserFriends(searchValue);
-    this.friendItems$ = this.friends$.pipe(
+    const value = searchValue.trim();
+
+    if (value.length < 2) {
+      this.friendItems$ = of([]);
+    }
+
+    this.friendItems$ = this.userService.searchUserFriends(value).pipe(
       map((friends) =>
         friends.map((f) => ({
           id: f.id,

@@ -1,0 +1,25 @@
+.search-form {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-text-field {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.search-grade-field {
+  flex: 0 1 120px;
+}
+
+.date-picker-field {
+  flex: 0 1 250px;
+}

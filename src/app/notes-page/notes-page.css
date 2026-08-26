@@ -1,7 +1,7 @@
 .notes-page {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 .notes-grid {
   display: grid;
@@ -14,4 +14,23 @@
 }
 .notes-grid app-notes-card:hover {
   transform: translateY(-8px);
+}
+
+.download-popup {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+
+  background: white;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
 }

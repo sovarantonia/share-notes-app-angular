@@ -1,0 +1,9 @@
+.dialog-components {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* .dialog-actions {
+    align-self: flex-end;
+} */

@@ -1,15 +1,16 @@
 import { DatePipe, NgTemplateOutlet } from '@angular/common';
 import { Component, EventEmitter, inject, input, Input, model, Output } from '@angular/core';
-import { MatAnchor } from '@angular/material/button';
+import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChip } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
-import { MatFormFieldModule, MatSuffix } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { NoteRequest } from '../../model/note/note-request';
 import { NoteResponse } from '../../model/note/note-response';
 import { ViewNoteDialog } from '../view-note-dialog/view-note-dialog';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-notes-card',
@@ -21,8 +22,11 @@ import { ViewNoteDialog } from '../view-note-dialog/view-note-dialog';
     DatePipe,
     MatIcon,
     MatCheckboxModule,
-    MatSuffix,
     NgTemplateOutlet,
+    MatButton,
+    MatIcon,
+    MatIconButton,
+    MatTooltip,
   ],
   templateUrl: './notes-card.html',
   styleUrl: './notes-card.css',
@@ -45,6 +49,9 @@ export class NotesCard {
   onViewClick(id: number, note: NoteResponse) {
     const dialogRef = this.dialog.open(ViewNoteDialog, {
       data: { note: note, isReadonlyMode: this.isReadonlyMode, tags: this.allTags() },
+      width: this.isReadonlyMode ? '500px' : '700px',
+      maxWidth: '90vw',
+      maxHeight: '90vh',
     });
 
     dialogRef.afterClosed().subscribe((res: NoteRequest | undefined) => {

@@ -37,15 +37,15 @@
     @if (!isViewMode) {
       <div class="secondary-actions">
         <button
-          matSuffix
           color="warn"
           mat-icon-button
           (click)="onDeleteClick(note.id)"
           aria-label="Delete note"
+          matTooltip="Delete note"
         >
           <mat-icon>delete</mat-icon>
         </button>
-        <button matSuffix mat-icon-button (click)="onShareClick(note.id)" aria-label="Share note">
+        <button mat-icon-button (click)="onShareClick(note.id)" aria-label="Share note" matTooltip="Share note">
           <mat-icon>share</mat-icon>
         </button>
       </div>

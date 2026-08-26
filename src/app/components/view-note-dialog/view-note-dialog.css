@@ -1,0 +1,23 @@
+.note-view {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.note-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note-header h3,
+.note-text {
+  margin: 0;
+}

@@ -1,13 +1,12 @@
 <h2 mat-dialog-title>Download notes</h2>
 
-<mat-dialog-content>
+<mat-dialog-content class="download-dialog">
   <mat-label>Select the file type</mat-label>
-  <mat-radio-group [value]="downloadType()" (change)="downloadType.set($event.value)">
+  <mat-radio-group [value]="downloadType()" (change)="downloadType.set($event.value)" class="file-type-options">
     <mat-radio-button value="pdf">Pdf</mat-radio-button>
     <mat-radio-button value="docx">Docx</mat-radio-button>
     <mat-radio-button value="txt">Text</mat-radio-button>
   </mat-radio-group>
-  <div>Selected type: {{ downloadType() }}</div>
 </mat-dialog-content>
 
 <mat-dialog-actions>

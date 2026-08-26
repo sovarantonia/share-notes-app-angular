@@ -1,9 +1,9 @@
 <h2 mat-dialog-title>Share note</h2>
-<mat-dialog-content>
+<mat-dialog-content class="dialog-content">
   <app-simple-autocomplete [options]="data" (optionSelected)="onUserSelected($event)" />
 </mat-dialog-content>
 
-<mat-dialog-actions>
-  <button matButton (click)="onShare()">Share</button>
+<mat-dialog-actions class="dialog-actions" align="end">
+  <button matButton (click)="onShare()" [disabled]="!selectedUser.trim()">Share</button>
   <button matButton mat-dialog-close>Close</button>
 </mat-dialog-actions>

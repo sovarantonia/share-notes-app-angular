@@ -7,9 +7,16 @@
       [allTagOptions]="data.tags"
     />
   } @else {
-    <mat-label>{{ data.note.title }}</mat-label>
-    <mat-chip>{{ data.note.date }}</mat-chip>
-    {{ data.note.text }}
+    <div class="note-view">
+      <div class="note-header">
+        <h3>{{ data.note.title }}</h3>
+        <mat-chip>{{ data.note.date | date: 'dd-MM-yyyy' }}</mat-chip>
+      </div>
+    </div>
+
+    <div class="note-text">
+      {{ data.note.text }}
+    </div>
   }
 </mat-dialog-content>
 <mat-dialog-actions>

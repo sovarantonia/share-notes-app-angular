@@ -1,0 +1,8 @@
+.download-dialog {
+  overflow: hidden;
+}
+
+.file-type-options {
+  display: flex;
+  gap: 1rem;
+}

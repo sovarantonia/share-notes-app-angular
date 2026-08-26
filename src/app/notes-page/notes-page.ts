@@ -5,19 +5,19 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Dialog } from '../components/dialog/dialog';
 import { DownloadNoteDialog } from '../components/download-note-dialog/download-note-dialog';
+import { NoteSearchBar } from '../components/note-search-bar/note-search-bar';
 import { NotesCard } from '../components/notes-card/notes-card';
 import { SnackbarService } from '../components/notification/snackbar-service';
 import { ShareDialog } from '../components/share-dialog/share-dialog';
 import { DialogData } from '../model/dialog-data';
 import { NoteRequest } from '../model/note/note-request';
 import { NoteResponse } from '../model/note/note-response';
+import { NoteSearchFilters } from '../model/note/note-search-filters';
 import { UserInfo } from '../model/user/user-info';
 import { NoteService } from '../service/note/note-service';
 import { ShareService } from '../service/share/share-service';
 import { TagService } from '../service/tag/tag-service';
 import { UserService } from '../service/user/user-service';
-import { NoteSearchBar } from "../components/note-search-bar/note-search-bar";
-import { NoteSearchFilters } from '../model/note/note-search-filters';
 
 @Component({
   selector: 'app-notes-page',
@@ -106,6 +106,8 @@ export class NotesPage implements OnInit {
 
         const dialogRef = this.dialog.open(ShareDialog, {
           data,
+          width: '500px',
+          maxWidth: '90vw',
         });
 
         dialogRef.afterClosed().subscribe((res) => {

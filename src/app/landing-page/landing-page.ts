@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { Sidebar } from "../components/sidebar/sidebar";
+import { MatCard } from "@angular/material/card";
+import { MatIcon } from "@angular/material/icon";
+import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-landing-page',
-  imports: [Sidebar, RouterOutlet],
+  imports: [Sidebar, RouterOutlet, RouterLink, MatCard, MatIcon, MatButton],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
   standalone: true,

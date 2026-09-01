@@ -1,7 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-color: #f8f7fa;
+  --card: #ffffff;
+  --card-border: #e7e2e8;
+  --primary-text: #211a1d;
+  --secondary-text: #6f6268;
+  --muted-text: #8c7f85;
+  --hovered-card: #fff7f9;
+  --selected-card: #fdecef;
+  --chips-bg: #fce8ed;
+  --chips-text: #8b3a4a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-color);
+}
+
 form {
   padding: 20px;
 }
+
 label {
   display: block;
 }
@@ -16,28 +45,6 @@ input {
 button[type='submit'] {
   display: inline-block;
   width: 40%;
-}
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 .app-form {
@@ -80,4 +87,8 @@ body {
   flex-direction: column;
   gap: 1.5rem;
   padding-top: 1.5rem;
+}
+
+h1 {
+  color: var(--primary-text);
 }

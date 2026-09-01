@@ -18,10 +18,9 @@
       [closed]="drawer.closedStart"
       (trigger)="drawer.toggle()"
     />
-    <!-- <span class="title">My Application</span> -->
 
     <div class="content">
-      <router-outlet></router-outlet>
+      <ng-content />
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,50 +1,57 @@
 <div class="home-page">
-  <div class="sidebar">
-    <app-sidebar [navItems]="landingPageItems">
-      <router-outlet />
-    </app-sidebar>
-  </div>
+  <app-sidebar [navItems]="landingPageItems">
+    <main class="page-content">
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Join a Motivated Community</h1>
+          <p class="subtitle">
+            The perfect place to keep track of your thoughts, ideas and progress.
+          </p>
+          <div class="hero-text">
+            <p>
+              Whether you're working on self-development or motivation, we make it easier to create,
+              organize and share your notes.
+            </p>
+            <p>
+              Track your progress over time and access your notes anytime, anywhere. Stay motivated
+              and focused on your journey.
+            </p>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a mat-flat-button routerLink="/register">Get Started</a>
+          <a mat-stroked-button routerLink="/login">Sign In</a>
+        </div>
+      </section>
 
-  <main class="page-content">
-    <section class="hero">
-      <h1>Join a Motivated Community</h1>
-      <p class="subtitle">
-        Connect with others who are on a journey to improve themselves, just like you.
-      </p>
-      <p class="subtitle">The perfect place to keep track of your thoughts, ideas and progress.</p>
-      <div class="hero-text">
-        <p>
-          Whether you're working on self-development or motivation, we make it easier to create,
-          organize and share your notes.
-        </p>
-        <p>
-          Track your progress over time and access your notes anytime, anywhere. Stay motivated and
-          focused on your journey.
-        </p>
-      </div>
-    </section>
+      <section class="features">
+        <h2>Everything you need to stay on track</h2>
+        <div class="features-grid">
+          <mat-card class="feature-card">
+            <mat-icon>trending_up</mat-icon>
+            <h3>Empower Your Personal Growth</h3>
+            <p>
+              Create notes that inspire your growth. Document your journey, track milestones and
+              stay motivated every day.
+            </p>
+          </mat-card>
 
-    <section class="feature">
-      <h1>Empower Your Personal Growth</h1>
-      <p>
-        Create notes that inspire your growth. Document your journey, track milestones and stay
-        motivated to improve every day.
-      </p>
-    </section>
+          <mat-card class="feature-card">
+            <mat-icon>insights</mat-icon>
+            <h3>Keep Your Motivation on Track</h3>
+            <p>
+              Visualize your progress and stay focused on your goals with progress tracking
+              features.
+            </p>
+          </mat-card>
 
-    <section class="feature">
-      <h1>Keep Your Motivation on Track</h1>
-      <p>
-        Visualize your progress and stay focused on your goals with our progress tracking features.
-      </p>
-    </section>
-
-    <section class="feature">
-      <h1>Your Notes, Anytime, Anywhere</h1>
-      <p>
-        Access your personal notes across devices and stay on track with your self-development
-        journey.
-      </p>
-    </section>
-  </main>
+          <mat-card class="feature-card">
+            <mat-icon>devices</mat-icon>
+            <h3>Your Notes, Anytime, Anywhere</h3>
+            <p>Access your notes across devices and keep your progress with you.</p>
+          </mat-card>
+        </div>
+      </section>
+    </main>
+  </app-sidebar>
 </div>

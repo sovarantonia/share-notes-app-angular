@@ -1,12 +1,12 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { HamburgerComponent } from '../hamburger-component/hamburger-component';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
+import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
+import { RouterLink } from '@angular/router';
 import { NavItem } from '../../model/nav-item';
+import { HamburgerComponent } from '../hamburger-component/hamburger-component';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,7 +14,6 @@ import { NavItem } from '../../model/nav-item';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    RouterOutlet,
     RouterLink,
     MatButtonModule,
     HamburgerComponent,

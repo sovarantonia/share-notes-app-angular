@@ -1,6 +1,11 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #drawer [mode]="mode" [opened]="mode === 'side'" class="example-sidenav">
-    <mat-nav-list>
+    <div class="app-brand">
+      <mat-icon>edit_note</mat-icon>
+      <span>Share Notes App</span>
+    </div>
+
+    <mat-nav-list class="nav-list">
       @for (item of navItems; track item.route) {
         <a mat-list-item [routerLink]="item.route" routerLinkActive="active">
           <span>{{ item.label }}</span>

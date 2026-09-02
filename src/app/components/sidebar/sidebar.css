@@ -1,9 +1,12 @@
 .example-container {
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--bg-color);
 }
 
 .example-sidenav {
   width: 240px;
+  border-right: 1px solid var(--card-border);
 }
 
 .content {
@@ -17,10 +20,32 @@
   vertical-align: middle;
 }
 
-.active {
-  background-color: rgba(0, 0, 0, 0.08);
+.nav-list {
+  padding: 1rem 0;
+
+  a,
+  button {
+    margin-bottom: 0.25rem;
+  }
+
+  .active {
+    background-color: var(--hovered-card);
+    font-weight: 500;
+  }
 }
 
 mat-sidenav-content {
   transition: margin 0.3s ease;
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 1.5rem 1rem;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--mat-sys-primary);
 }

@@ -33,10 +33,22 @@
   gap: 0.5rem;
 }
 
-.tags mat-chip,
-.grade-section mat-chip {
-  max-width: 150px;
+.grade-label {
+  color: var(--secondary-text);
 }
+
+.grade-value {
+  color: var(--primary-text);
+  font-weight: 600;
+}
+
+.tags mat-chip {
+  max-width: 150px;
+  background-color: transparent;
+  color: var(--secondary-text);
+  border: 1px solid var(--card-border);
+}
+
 
 .card-text p {
   overflow: hidden;
@@ -51,4 +63,20 @@
   align-items: center;
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.note-title {
+  font-weight: 600;
+  color: var(--primary-text);
+}
+
+.note-date {
+  color: var(--secondary-text);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
 

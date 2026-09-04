@@ -10,8 +10,8 @@
   --primary-text: var(--mat-sys-on-surface);
   --secondary-text: var(--mat-sys-on-surface-variant);
   
-  --chips-bg: #fce8ed;
-  --chips-text: #8b3a4a;
+  --chips-bg: var(--mat-sys-primary-container);;
+  --chips-text: var(--mat-sys-on-primary-container);
 }
 
 * {

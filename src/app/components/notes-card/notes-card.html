@@ -1,10 +1,10 @@
 <ng-template #noteContent>
   <mat-card-header class="card-header">
-    <mat-card-title>
-      {{ note.title }}
-      <mat-chip>
+    <mat-card-title class="title-row">
+      <span class="note-title">{{ note.title }}</span>
+      <span class="note-date">
         {{ note.date | date: 'dd-MM-yyyy' }}
-      </mat-chip>
+      </span>
     </mat-card-title>
 
     @if (!isViewMode) {
@@ -27,13 +27,15 @@
     </div>
 
     <div class="grade-section">
-      <span>Grade: </span>
-      <mat-chip> {{ note.grade }} </mat-chip>
+      <span class="grade-label">Grade: </span>
+      <span class="grade-value">{{ note.grade }}/10</span>
     </div>
   </mat-card-content>
 
   <mat-card-actions class="card-actions">
-    <button matButton (click)="onViewClick(note.id, note)">View</button>
+    <button matButton (click)="onViewClick(note.id, note)">
+      <mat-icon>visibility</mat-icon> View
+    </button>
     @if (!isViewMode) {
       <div class="secondary-actions">
         <button
@@ -45,7 +47,12 @@
         >
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-icon-button (click)="onShareClick(note.id)" aria-label="Share note" matTooltip="Share note">
+        <button
+          mat-icon-button
+          (click)="onShareClick(note.id)"
+          aria-label="Share note"
+          matTooltip="Share note"
+        >
           <mat-icon>share</mat-icon>
         </button>
       </div>

@@ -1,28 +1,34 @@
 <mat-card>
-  <mat-card-header> {{ item.user.firstName }} {{ item.user.lastName }} </mat-card-header>
+  <mat-card-header>
+    <mat-card-title> {{ item.user.firstName }} {{ item.user.lastName }} </mat-card-title>
+  </mat-card-header>
   <mat-card-content>
-    {{ item.user.email }}
+    <p class="user-email">
+      {{ item.user.email }}
+    </p>
     @if (item.sentAt) {
-      Sent at: {{ item.sentAt | date: 'short' }}
+      <p class="sent-date">Sent at: {{ item.sentAt | date: 'short' }}</p>
     }
   </mat-card-content>
   <mat-card-actions>
     @if (mode === 'friends') {
-      <button matButton (click)="removeFriend.emit(item.user.id)">Remove</button>
+      <button matButton class="danger-button" (click)="removeFriend.emit(item.user.id)">
+        Remove
+      </button>
     }
 
     @if (mode === 'sent') {
-      <button matButton (click)="cancelRequest.emit(item.id!)">Cancel</button>
+      <button matButton (click)="cancelRequest.emit(item.id!)">Cancel request</button>
     }
 
     @if (mode === 'received') {
-      <button matButton (click)="acceptRequest.emit(item.id!)">Accept</button>
+      <button matButton="filled" (click)="acceptRequest.emit(item.id!)">Accept</button>
 
-      <button matButton color="warn" (click)="declineRequest.emit(item.id!)">Decline</button>
+      <button matButton (click)="declineRequest.emit(item.id!)">Decline</button>
     }
 
     @if (mode === 'send-request') {
-      <button matButton (click)="sendRequest.emit(item.user.email)">Send request</button>
+      <button matButton="filled" (click)="sendRequest.emit(item.user.email)">Send request</button>
     }
   </mat-card-actions>
 </mat-card>

@@ -1,0 +1,17 @@
+mat-card-title {
+  color: var(--primary-text);
+  font-weight: 600;
+}
+
+.user-email,
+.sent-date {
+  color: var(--secondary-text);
+}
+
+.user-email {
+  margin-bottom: 0.5rem;
+}
+
+.sent-date {
+  font-size: 0.875rem;
+}

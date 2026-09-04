@@ -83,8 +83,8 @@
     </mat-form-field>
 
     <div class="form-actions">
-      <button matButton type="submit" (click)="onSubmit()" [disabled]="noteForm.invalid">
-        Submit
+      <button mat-flat-button type="submit" (click)="onSubmit()" [disabled]="noteForm.invalid">
+        {{ isEditMode ? 'Save changes' : 'Create note' }}
       </button>
     </div>
   </form>

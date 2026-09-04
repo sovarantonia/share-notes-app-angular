@@ -9,6 +9,7 @@ import {
 import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { Dialog } from '../components/dialog/dialog';
@@ -20,7 +21,7 @@ import { UserService } from '../service/user/user-service';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ReactiveFormsModule, MatFormField, MatLabel, MatButton, MatInput, MatError],
+  imports: [ReactiveFormsModule, MatFormField, MatLabel, MatButton, MatInput, MatError, MatIcon],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.css',
 })

@@ -32,10 +32,13 @@
     </mat-form-field>
 
     <div class="form-actions">
-      <button matButton type="submit" [disabled]="profileForm.invalid">Submit</button>
+      <button mat-flat-button type="submit" [disabled]="profileForm.invalid">Save changes</button>
     </div>
   </form>
   <div class="page-options">
-    <button matButton (click)="onDeleteClicked()">Delete account</button>
+    <button matButton class="danger-button" (click)="onDeleteClicked()">
+      <mat-icon>delete_forever</mat-icon>
+      Delete account
+    </button>
   </div>
 </div>

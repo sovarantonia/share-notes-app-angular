@@ -2,16 +2,18 @@
 :root {
   --bg-color: #f8f7fa;
   --primary-color: var(--mat-sys-primary);
-  
+
   --hero-card: #ffffff;
   --card: var(--mat-sys-surface-container);
   --card-border: var(--mat-sys-outline-variant);
-  
+
   --primary-text: var(--mat-sys-on-surface);
   --secondary-text: var(--mat-sys-on-surface-variant);
-  
-  --chips-bg: var(--mat-sys-primary-container);;
+
+  --chips-bg: var(--mat-sys-primary-container);
   --chips-text: var(--mat-sys-on-primary-container);
+
+  --error: var(--mat-sys-error);
 }
 
 * {

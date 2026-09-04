@@ -5,6 +5,7 @@
       [note]="data.note"
       (formSubmitted)="onDialogSubmit($event)"
       [allTagOptions]="data.tags"
+      [isEditMode]="true"
     />
   } @else {
     <div class="note-view">

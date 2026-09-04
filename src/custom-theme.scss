@@ -41,3 +41,10 @@ body {
     color: var(--mat-sys-error);
   }
 }
+
+.danger-button-filled {
+  @include mat.button-overrides((
+    filled-container-color: var(--mat-sys-error),
+    filled-label-text-color: var(--mat-sys-on-error),
+  ));
+}

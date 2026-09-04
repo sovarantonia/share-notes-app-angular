@@ -1,0 +1,9 @@
+.dialog-title {
+  font-weight: 600;
+  color: var(--primary-text);
+}
+
+.dialog-content {
+  color: var(--secondary-text);
+  font-weight: 400;
+}

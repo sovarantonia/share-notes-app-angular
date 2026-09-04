@@ -17,9 +17,19 @@
 
 .share-name {
   font-weight: 600;
+  color: var(--primary-text);
+}
+
+.share-email {
+  color: var(--primary-text);
+  font-weight: 500;
 }
 
 .share-email,
 .share-date {
   font-size: 0.85rem;
+}
+
+.share-date {
+  color: var(--secondary-text);
 }

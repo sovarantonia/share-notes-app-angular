@@ -19,26 +19,32 @@ export class PageLayout {
     {
       route: '/app/home',
       label: 'Home',
+      icon: 'home'
     },
     {
       route: '/app/profile',
       label: 'Profile',
+      icon: 'person'
     },
     {
       route: '/app/add-note',
       label: 'Create new note',
+      icon: 'note_add'
     },
     {
       route: '/app/my-notes',
       label: 'My notes',
+      icon: 'description'
     },
     {
       route: '/app/friends',
       label: 'Friend list',
+      icon: 'group'
     },
     {
       route: '/app/shares',
       label: 'Shared notes',
+      icon: 'share'
     },
   ];
 

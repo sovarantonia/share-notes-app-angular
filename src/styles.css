@@ -1,13 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
   --bg-color: #f8f7fa;
-  --card: #ffffff;
-  --card-border: #e7e2e8;
-  --primary-text: #211a1d;
-  --secondary-text: #6f6268;
-  --muted-text: #8c7f85;
-  --hovered-card: #fff7f9;
-  --selected-card: #fdecef;
+  --primary-color: var(--mat-sys-primary);
+  
+  --hero-card: #ffffff;
+  --card: var(--mat-sys-surface-container);
+  --card-border: var(--mat-sys-outline-variant);
+  
+  --primary-text: var(--mat-sys-on-surface);
+  --secondary-text: var(--mat-sys-on-surface-variant);
+  
   --chips-bg: #fce8ed;
   --chips-text: #8b3a4a;
 }
@@ -50,7 +52,8 @@ button[type='submit'] {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid #000;
+  border: 1px solid var(--card-border);
+  background-color: var(--hero-card);
   border-radius: 15px;
   width: 100%;
   padding: 2rem;
@@ -65,7 +68,7 @@ button[type='submit'] {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-self: center;
+  align-items: center;
 }
 
 .form-header {
@@ -79,6 +82,15 @@ button[type='submit'] {
   gap: 1.5rem;
   max-width: 500px;
   margin-inline: auto;
+}
+
+.auth-link {
+  color: var(--secondary-text);
+
+  a {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
 }
 
 .tab {

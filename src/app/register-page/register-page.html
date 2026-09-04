@@ -76,7 +76,9 @@
     <section class="form-actions">
       <button matButton type="submit" [disabled]="registerForm.invalid">Register</button>
 
-      <a routerLink="/login">Already have an account? Log in now </a>
+      <div class="auth-link">
+        <a routerLink="/login">Already have an account? Log in now </a>
+      </div>
     </section>
   </form>
 </div>

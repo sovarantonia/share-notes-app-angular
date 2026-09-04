@@ -10,7 +10,7 @@
 }
 
 .content {
-  padding: 1rem;
+  padding: 1rem 3rem;
 }
 
 .title {
@@ -29,7 +29,6 @@
   }
 
   .active {
-    background-color: var(--hovered-card);
     font-weight: 500;
   }
 }
@@ -47,5 +46,13 @@ mat-sidenav-content {
 
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--mat-sys-primary);
+  color: var(--primary-color);
+}
+
+.logout-item {
+  margin-top: 5rem;
+}
+
+.logout-item:hover {
+  background-color: var(--mat-sys-surface-container-high);
 }
